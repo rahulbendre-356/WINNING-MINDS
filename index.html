@@ -896,7 +896,46 @@ ul.menu {
     object-fit: cover;
     border-radius: 50%;
 }
+/* Styles for laptops (screen width between 1024px and 1440px) */
+@media (max-width: 1440px) and (min-width: 1024px) {
+    .nav-item {
+        font-size: 16px;
+    }
+    .info-box {
+        padding: 15px;
+    }
+}
 
+/* Styles for tablets and smaller devices (screen width between 768px and 1024px) */
+@media (max-width: 1024px) and (min-width: 768px) {
+    .nav-item {
+        display: block;
+        text-align: center;
+    }
+    .carousel-images img {
+        width: 50%;
+    }
+}
+
+/* Mobile styles (screen width below 768px) */
+@media (max-width: 768px) {
+    .nav-item {
+        display: block;
+        text-align: center;
+    }
+    .info-box {
+        width: 100%;
+        margin: 10px 0;
+    }
+    .history-img {
+        width: 100%;
+        height: auto;
+    }
+    .videos {
+        flex-direction: column;
+        align-items: center;
+    }
+}
 
     </style>
 </head>
