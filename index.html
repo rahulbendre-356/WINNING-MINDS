@@ -936,6 +936,63 @@ ul.menu {
         align-items: center;
     }
 }
+@media (max-width: 768px) {
+    .nav-item {
+        display: block;
+        text-align: center;
+    }
+}
+@media (max-width: 768px) {
+    .info-boxes, .sport-boxes, .team-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .info-box, .team-member, .sport-box {
+        width: 100%; /* Ensure they take up the full width */
+        margin-bottom: 20px; /* Add space between stacked boxes */
+    }
+}
+img {
+    max-width: 100%;
+    height: auto; /* Maintain aspect ratio */
+}
+
+.history-img {
+    width: 100%; /* Ensure the image spans the full width on mobile */
+}
+@media (max-width: 768px) {
+    .carousel-images img {
+        width: 100%; /* Make each carousel image take up full width */
+    }
+
+    .videos {
+        flex-direction: column;
+    }
+
+    .video-box {
+        min-width: 100%;
+        margin-bottom: 20px;
+    }
+}
+@media (max-width: 768px) {
+    .info-box, .team-member {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}
+body {
+    word-wrap: break-word;
+}
+
+@media (max-width: 768px) {
+    h1, h2, p {
+        padding: 10px;
+    }
+}
+header {
+    min-height: 200px; /* Allow height to adjust based on content */
+}
 
     </style>
 </head>
