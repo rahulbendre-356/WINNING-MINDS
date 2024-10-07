@@ -1,0 +1,3083 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sports Awareness</title>
+    <style>
+        /* Your existing CSS here */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        header {
+    background-image: url('./header2.png');
+    background-size: cover; /* Ensure the image covers the entire header */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    padding: 20px;
+    color: #8fffe5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    height: 100%; /* Adjust header height */
+    width: 100%;
+}
+
+        header .logo {
+            width: 200px;
+            height: auto;
+            position: absolute;
+            left: 20px;
+        }
+
+        .header-text {
+            text-align: center;
+            flex-grow: 1;
+            color:#4cd8e4;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #2c3e50;
+            position: relative;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-item > a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .nav-item > a:hover {
+            background-color: #34495e;
+        }
+
+        .sub-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #34495e;
+            z-index: 1;
+        }
+
+        .sub-menu a {
+            padding: 10px 20px;
+            text-decoration: none;
+            display: block;
+            color: white;
+        }
+
+        .sub-menu a:hover {
+            background-color: #2c3e50;
+        }
+
+        .nav-item:hover .sub-menu {
+            display: block;
+        }
+
+        .main-content {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        .active-content {
+            display: block;
+        }
+
+        footer {
+            background-color: #2c3e50;
+            padding: 20px;
+            color: white;
+            text-align: center;
+        }
+
+        .footer-links a {
+            color: white;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: #3498db;
+        }
+
+        .social-media-icons img {
+            width: 24px;
+            margin: 0 10px;
+        }
+
+        .social-media-icons {
+            margin-top: 15px;
+        }
+
+        .team-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .team-member {
+            width: 120px;
+            height: 120px;
+            cursor: pointer;
+        }
+
+        .team-photo {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .history-images {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .history-img {
+            width: 48%;
+            max-width: 48%;
+            height: 300px;
+            object-fit: cover;
+            margin: 10px 0;
+        }
+
+        #rules-content ul {
+            list-style-type: disc;
+            padding-left: 20px;
+            margin-left: 0;
+        }
+
+        #rules-content li {
+            margin-bottom: 10px;
+        }
+
+        .tab-button {
+            cursor: pointer;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+            margin: 5px;
+            display: inline-block;
+        }
+
+        .tab-button.active {
+            background-color: #ddd;
+        }
+
+        .subpart {
+            display: none;
+            padding: 10px;
+            border: 1px solid #ccc;
+            margin-top: 10px;
+            background-color: #e9e9e9;
+        }
+
+        .subpart.active {
+            display: block;
+        }
+        .tab-container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border-radius: 10px;
+    }
+    .benefits-image {
+        width: 200px; /* Adjust width */
+        height: 200px; /* Auto-adjust height */
+        margin: 10px 0;
+        border-radius: 8px; /* Rounded corners for softer, more attractive look */
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+        
+    }
+   
+    .tab-content {
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        padding: 20px;
+        background-color: #ffffff;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        
+    }
+    h1 {
+        font-size: 24px;
+        color: #2c3e50;
+    }
+    p {
+        font-size: 16px;
+        color: #555555;
+        line-height: 1.6;
+    }
+    strong {
+        color: #2c3e50;
+    }
+    #progress-bar-container {
+    width: 100%;
+    height: 5px;
+    background-color: #ddd;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+}
+
+#progress-bar {
+    height: 100%;
+    width: 0;
+    background-color: #4cd8e4;
+    transition: width 0.2s ease;
+}
+.main-content {
+    padding: 20px;
+    text-align: center;
+    /* Set overflow to auto or scroll if content might overflow */
+    overflow: auto;
+}
+/* Add this CSS to style the scroll info div */
+#scroll-info {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #2c3e50;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    z-index: 9999;
+    width: 100%;
+    text-align: center;
+}
+@media (max-width: 768px) {
+    .nav-item {
+        display: block;
+        text-align: center;
+    }
+    
+    .history-img {
+        width: 100%;
+        height: auto;
+    }
+}
+/* Smooth Scroll for the entire document */
+html {
+  scroll-behavior: smooth;
+}
+.event-bar {
+    background-color: #f39c12; /* Orange background color */
+    color: white;              /* White text */
+    padding: 10px;             /* Padding around the content */
+    margin-bottom: 10px;       /* Space below the event bar */
+    text-align: center;        /* Centering the text */
+    position: relative;
+    overflow: hidden;          /* Ensures content doesn't overflow */
+    height: 20px;              /* Fixed height for the event bar */
+}
+
+#event-marquee {
+    white-space: nowrap;       /* Prevent text wrapping */
+    display: inline-block;     /* Inline block to allow scrolling */
+    padding-left: 100%;        /* Push content off screen to the right */
+    animation: scroll 10s linear infinite; /* Animation for scrolling */
+}
+@keyframes scroll {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+.info-boxes {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.info-box {
+    flex: 1;
+    margin: 20px;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.info-box h3 {
+    margin-top: 0;
+    font-size: 1.5em;
+    color: #333;
+}
+
+.info-box p {
+    font-size: 1em;
+    color: #666;
+}
+.video-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.videos {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px; /* Adjust the gap between the video boxes as needed */
+}
+
+.video-box {
+    flex: 1;
+    min-width: 300px; /* Adjust the minimum width as needed */
+    background-color: #f4f4f4; /* Add a background color for visibility */
+    padding: 10px; /* Add padding for some spacing */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add a shadow for better visual separation */
+}
+
+.video-box iframe {
+    width: 100%;
+    height: 200px; /* Adjust the height as needed */
+    border: none;
+}
+.info-box {
+    width: 100%; /* Ensure the boxes take up the available width */
+    margin: 20px 0; /* Add some spacing between the boxes */
+    padding: 20px;
+    box-sizing: border-box; /* Include padding in the element's width and height */
+}
+
+.info-box-img {
+    width: 100%; /* Make the image take the full width of the parent container */
+    height: auto; /* Keep the aspect ratio intact */
+    display: block; /* Ensure the image behaves like a block element */
+    margin-bottom: 20px; /* Add some space between the image and the text below */
+}
+.section {
+            margin-bottom: 40px;
+            background-color: white;
+            padding: 30px;
+            border-radius: 50px;
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        .section:hover {
+            transform: translateY(-10px);
+        }
+        h2 {
+            color: #0056b3;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        p {
+            line-height: 1.7;
+            font-size: 16px;
+            text-align: justify;
+        }
+        .image {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .oval-img {
+            width: 30%;
+            height: auto;
+            border-radius: 50%;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .section {
+    border-radius: 20px; /* Apply rounded corners */
+}
+.box {
+    border-radius: 20px; /* Apply rounded corners to boxes */
+}
+.section-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Space between boxes */
+}
+.box {
+    flex: 1;
+    min-width: 300px; /* Minimum width for responsiveness */
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 10px;
+}
+/* Carousel container */
+.carousel {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    height: 300px;
+    overflow: hidden;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+/* Carousel images wrapper */
+.carousel-images {
+    display: flex;
+    width: 300%; /* Adjust based on the number of images */
+    height: 300%;
+    transition: transform 0.5s ease-in-out;
+}
+
+/* Individual image in the carousel */
+.carousel-images img {
+    width: 20%; /* For 5 images */
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* Navigation arrows (optional) */
+.carousel-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    font-size: 1.5rem;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.carousel-control.left {
+    left: 10px;
+}
+
+.carousel-control.right {
+    right: 10px;
+}
+/* Optional: Add fade effect */
+/* Carousel container */
+.carousel {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+/* Carousel images wrapper */
+.carousel-images {
+    display: flex;
+    width: 300%; /* 100% * number of images */
+    height: 100%;
+    animation: scroll 15s linear infinite; /* Adjust duration for scrolling speed */
+}
+
+/* Individual image in the carousel */
+.carousel-images img {
+    width: 20%; /* 100% / number of images */
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* Keyframes for continuous scroll */
+@keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}
+/* Main navigation styles */
+/* Main navigation styles */
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #2c3e50;
+    padding: 10px;
+    width: 100%;
+}
+
+ul.menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-item > a {
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    display: block;
+    font-size: 16px;
+}
+
+.nav-item > a:hover {
+    background-color: #34495e;
+    border-radius: 5px;
+}
+
+/* Sub-menu styles */
+.sub-menu {
+    display: none;
+    position: absolute;
+    background-color: #34495e;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.sub-menu li {
+    list-style: none;
+}
+
+.sub-menu li a {
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    display: block;
+}
+
+.sub-menu li a:hover {
+    background-color: #2c3e50;
+}
+
+.nav-item:hover .sub-menu {
+    display: block;
+}
+
+/* Search bar and logo container */
+.search-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#search-bar {
+    padding: 10px;
+    width: 250px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.search-icon {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+/* Styling for Info Boxes */
+.info-boxes {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 20px 0;
+}
+
+.info-box {
+    width: auto;
+    padding: 20px;
+    margin: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-sizing: border-box;
+}
+
+.info-box img {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.info-box h3 {
+    margin-top: 0;
+}
+
+.read-more {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.read-more:hover {
+    background-color: #0056b3;
+}
+
+/* Popup Styling */
+.popup-overlay {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.popup-content {
+    position: relative;
+    margin: 10% auto;
+    padding: 20px;
+    background: #fff;
+    width: 80%;
+    max-width: 600px;
+}
+
+.popup-close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Latest News Box */
+
+
+.news-container {
+  width: 100%;
+  max-width: 600px;
+  height: 300px; /* Container height */
+  margin: 20px auto;
+  padding: 10px;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  overflow: hidden; /* Hide overflow */
+  position: relative; /* Ensure the position of child elements */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.news-content {
+  position: absolute;
+  width: 100%;
+  top: 10; /* Start at the top of the container */
+  display: flex;
+  flex-direction: column; /* Stack news items vertically */
+  animation: scrollNews 10s linear infinite;
+}
+
+/* Animation for scrolling the news */
+@keyframes scrollNews {
+  0% {
+    transform: translateY(0); /* Start from the top */
+  }
+  100% {
+    transform: translateY(-100%); /* Move up by the height of the content */
+  }
+}
+
+/* Optional: style links within news content */
+.news-content a {
+  text-decoration: none;
+  color: #007bff; /* Adjust link color */
+}
+
+.news-content a:hover {
+  text-decoration: underline;
+}
+.sport-boxes {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.sport-box {
+    width: 200px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.sport-box img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.read-more-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.read-more-button:hover {
+    background-color: #0056b3;
+}
+
+.subpart {
+    display: none;
+    margin-top: 20px;
+}
+
+.subpart.active {
+    display: block;
+}
+
+.sport-detail {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.sport-item {
+    width: 200px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+}
+
+.sport-item img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+.tab-content-custom {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .info-boxes-custom {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .info-box-custom {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+        .info-box-custom img {
+            border-radius: 10px;
+        }
+        .read-more-custom {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .read-more-custom:hover {
+            background-color: #0056b3;
+        }
+
+        /* Extended content section (hidden by default) */
+        .extended-content-custom {
+            display: none;
+            margin-top: 20px;
+            text-align: left;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+        }
+
+        .extended-content-custom p {
+            margin: 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .info-boxes-custom {
+                flex-direction: column;
+                align-items: center;
+            }
+            .info-box-custom {
+                margin-bottom: 20px;
+            }
+        }
+        #esports, #extreme-sports {
+    display: none; /* Ensure this is not overriding your JavaScript */
+}
+ /* Comment Section Container */
+ .comment-section {
+        padding: 20px;
+        background-color: #f9f9f9;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        max-width: 700px;
+        margin: 20px auto;
+    }
+
+    /* Style for the Comment Heading */
+    #comments-section h3 {
+        font-size: 1.5em;
+        color: #444;
+        margin-bottom: 15px;
+    }
+
+    /* Style for the textarea (comment box) */
+    #comment-box {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        font-size: 1em;
+    }
+
+    /* Style for the submit button */
+    #comment-form button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1em;
+    }
+
+    #comment-form button:hover {
+        background-color: #0056b3;
+    }
+
+    /* Style for displaying comments(AAGAM) */
+    #comments-display p {
+        background-color: #fff;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        font-size: 0.95em;
+        color: #333;
+    }
+    .personality-row {
+    display: flex;
+    overflow-x: auto; /* Enable horizontal scrolling */
+    gap: 20px; /* Space between items */
+    padding: 10px;
+    scroll-snap-type: x mandatory; /* Snapping for smooth scroll */
+}
+
+.personality-circle {
+    flex: 0 0 auto; /* Prevent shrinking and maintain size */
+    text-align: center;
+    scroll-snap-align: center; /* Center item when scrolled */
+}
+
+.circle-img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div id="progress-bar-container">
+            <div id="progress-bar"></div>
+        </div>
+        <img src="./logofireee-removebg-preview.png" alt="Sports Awareness Logo" class="logo">
+        <div class="header-text">
+            <h1  style="color: #ddd;">Winning Mind</h1>
+            <p style="text-align: center; color: #ddd;">The significance of sport awareness</p>
+            <!-- Search Bar -->
+           
+        </div>
+    </header>
+    
+    
+    <nav>
+        <div class="nav-container">
+            <!-- Main menu -->
+            <ul class="menu">
+                <li class="nav-item">
+                    <a href="#" onclick="showContent('home-content')">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#">About the Sport</a>
+                    <ul class="sub-menu">
+                        <li><a href="#" onclick="showContent('history-content')">History</a></li>
+                        <li><a href="#" onclick="showContent('rules-content')">Rules</a></li>
+                        <li><a href="#" onclick="showContent('types-content')">Types of Sports</a></li>
+                        <li><a href="#" onclick="showContent('sports-quota-benefits-content')">Sports Quota Benefits</a></li>
+                    </ul>
+                </li>
+               <li class="nav-item ">
+                      <a href="#" onclick="showContent('Famous-content')">Famous Personality</a>
+               </li>
+                
+                <li class="nav-item">
+                    <a href="#" onclick="showContent('about-content')">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" onclick="showContent('contact-content')">Contact Us</a>
+                </li>
+            </ul>
+    
+            <!-- Search bar and logo section -->
+            <div class="search-container">
+                <input type="text" id="search-bar" placeholder="Search topics..." onkeyup="filterContent()">
+                <img src="./serach.png" alt="Search" class="search-icon">
+            </div>
+        </div>
+       </div>
+    </nav>
+   
+    
+    
+          <!-- Moving Events Bar -->
+          <section class="event-bar">
+            <div id="event-marquee">Loading events...</div>
+        </section>
+        <!--This is famous tab modification is on going -->
+        <div id="Famous-content" class="tab-content">
+               
+            <h1 style="text-align: center; color: #2c3e50;">Famous Personalities</h1>
+            <br>
+        
+           <!-- Circle layout for photos -->
+           <div class="personality-grid" style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+            <!-- Example of  personalities -->
+            <div class="personality-circle" onclick="showPersonalityInfo('usain')">
+                <img src="./usain-bolt.jpeg" alt="Usain Bolt" class="circle-img" style="width: 150px; height: 150px; object-fit: cover; border-radius: 50%;">
+                <p style="text-align: center;">Usain Bolt</p>
+            </div>
+            <div class="personality-circle" onclick="showPersonalityInfo('sindhu')">
+                <img src="./pv-sindhu.jpg" alt="P. V. Sindhu" class="circle-img" style="width: 150px; height: 150px; object-fit: cover; border-radius: 50%;">
+                <p style="text-align: center;">P. V. Sindhu</p>
+            </div>
+            <div class="personality-circle" onclick="showPersonalityInfo('phelps')">
+                <img src="./michael-phelps.jpeg" alt="Michael Phelps" class="circle-img" style="width: 150px; height: 150px; object-fit: cover; border-radius: 50%;">
+                <p style="text-align: center;">Michael Phelps</p>
+            </div>
+            <div class="personality-circle" onclick="showPersonalityInfo('bindra')">
+                <img src="./abhinav-bindra.jpg" alt="Abhinav Bindra" class="circle-img" style="width: 150px; height: 150px; object-fit: cover; border-radius: 50%;">
+                <p style="text-align: center;">Abhinav Bindra</p>
+            </div>
+            <div class="personality-circle" onclick="showPersonalityInfo('lewis')">
+                <img src="./carl-lewis.jpg" alt="Carl Lewis" class="circle-img" style="width: 150px; height: 150px; object-fit: cover; border-radius: 50%;">
+                <p style="text-align: center;">Carl Lewis</p>
+            </div>
+            <div class="personality-circle" onclick="showPersonalityInfo('mary')">
+                <img src="./Marykom.jpg" alt="Mary Kom" class="circle-img" style="width: 150px; height: 150px; object-fit: cover; border-radius: 50%;">
+                <p style="text-align: center;">Mary Kom</p>
+            </div>
+    
+            <!-- Add 14 more personalities following the same format -->
+            <!-- Example -->
+            <div class="personality-circle" onclick="showPersonalityInfo('simone')">
+                <img src="./simone-biles.jpeg" alt="Simone Biles" class="circle-img" style="width: 150px; height: 150px; object-fit: cover; border-radius: 50%;">
+                <p style="text-align: center;">Simone Biles</p>
+            </div>
+            <div class="personality-circle" onclick="showPersonalityInfo('neeraj')">
+                <img src="./neeraj-chopra.jpeg" alt="Neeraj Chopra" class="circle-img" style="width: 150px; height: 150px; object-fit: cover; border-radius: 50%;">
+                <p style="text-align: center;">Neeraj Chopra</p>
+            </div>
+            <div class="personality-circle" onclick="showPersonalityInfo('jesse')">
+                <img src="./jesse-owens.jpeg" alt="Jesse Owens" class="circle-img" style="width: 150px; height: 150px; object-fit: cover; border-radius: 50%;">
+                <p style="text-align: center;">Jesse Owens</p>
+            </div>
+            <div class="personality-circle" onclick="showPersonalityInfo('Saina')">
+                <img src="./saina-nehwal.jpg" alt="Saina Nehwal" class="circle-img" style="width: 150px; height: 150px; object-fit: cover; border-radius: 50%;">
+                <p style="text-align: center;">Saina Nehwal</p>
+            </div>
+            <div class="personality-circle" onclick="showPersonalityInfo('nadia')">
+                <img src="./nadia-comaneci.jpg" alt="Nadia Comăneci" class="circle-img" style="width: 150px; height: 150px; object-fit: cover; border-radius: 50%;">
+                <p style="text-align: center;">Nadia Comăneci</p>
+            </div>
+            <div class="personality-circle" onclick="showPersonalityInfo('milkha')">
+                <img src="./milkha-singh.jpeg" alt="Milkha Singh" class="circle-img" style="width: 150px; height: 150px; object-fit: cover; border-radius: 50%;">
+                <p style="text-align: center;">Milkha Singh</p>
+            </div>
+            <div class="personality-circle" onclick="showPersonalityInfo('laria')">
+                <img src="./larisa-latynina.jpeg" alt="Larisa Latynina" class="circle-img" style="width: 150px; height: 150px; object-fit: cover; border-radius: 50%;">
+                <p style="text-align: center;">Larisa Latynina</p>
+            </div>
+            <div class="personality-circle" onclick="showPersonalityInfo('deepika')">
+                <img src="./deepika-kumari.jpg" alt="Deepika Kumari" class="circle-img" style="width: 150px; height: 150px; object-fit: cover; border-radius: 50%;">
+                <p style="text-align: center;">Deepika Kumari</p>
+            </div>
+            <div class="personality-circle" onclick="showPersonalityInfo('mo')">
+                <img src="./mo-farah.jpeg" alt="Mo Farah" class="circle-img" style="width: 150px; height: 150px; object-fit: cover; border-radius: 50%;">
+                <p style="text-align: center;">Mo Farah</p>
+            </div>
+            
+            <div class="personality-circle" onclick="showPersonalityInfo('vinesh')">
+                <img src="./vinesh-phogat.jpeg" alt="Vinesh Phogat" class="circle-img" style="width: 150px; height: 150px; object-fit: cover; border-radius: 50%;">
+                <p style="text-align: center;">Vinesh Phogat</p>
+            </div>
+            <div class="personality-circle" onclick="showPersonalityInfo('avani')">
+                <img src="./avani-lekhara.jpeg" alt="Avani Lekhara" class="circle-img" style="width: 150px; height: 150px; object-fit: cover; border-radius: 50%;">
+                <p style="text-align: center;">Avani Lekhara</p>
+            </div>
+            <div class="personality-circle" onclick="showPersonalityInfo('navdeep')">
+                <img src="./navdeep-singh.jpeg" alt="Navdeep Singh" class="circle-img" style="width: 150px; height: 150px; object-fit: cover; border-radius: 50%;">
+                <p style="text-align: center;">Navdeep Singh</p>
+            </div>
+            <div class="personality-circle" onclick="showPersonalityInfo('dharambir')">
+                <img src="./dharambir.jpeg" alt="Dharambir" class="circle-img" style="width: 150px; height: 150px; object-fit: cover; border-radius: 50%;">
+                <p style="text-align: center;">Dharambir</p>
+            </div>
+            
+
+            <!-- Repeat for remaining 13 more personalities -->
+        </div>
+    
+        <br>
+    
+        <!-- Information Sections -->
+        <!-- Usain Bolt -->
+        <div id="usain" class="personality-info" style="display: none;">
+            <h2 style="text-align: center;">Usain Bolt</h2>
+            <img src="./usain-bolt.jpeg" alt="Usain Bolt" style="width: 400px; height: auto; display: block; margin-left: auto; margin-right: auto;">
+            <p><strong>Early Life and Start in Athletics:</strong></p>
+    <p>Usain Bolt was born on August 21, 1986, in Sherwood Content, Jamaica. From a young age, he showed athletic promise, excelling in sports like cricket and football. His sprinting talent was noticed in high school, and by 15, Bolt won a gold medal in the 200 meters at the 2002 World Junior Championships in Kingston, Jamaica. This marked the beginning of his rise to international fame.</p>
+
+    <p><strong>Breakthrough at the 2008 Olympics:</strong></p>
+    <p>Bolt’s global breakthrough came at the 2008 Beijing Olympics. He won gold in both the 100 meters and 200 meters, breaking world records in both events with times of 9.69 seconds and 19.30 seconds, respectively. His celebratory style and dominance made him a global sensation.</p>
+
+    <p><strong>London and Rio Olympics Glory:</strong></p>
+    <p>Bolt continued his Olympic success in London 2012, defending his 100 meters and 200 meters titles, and setting a new world record in the 4x100 meters relay. In Rio 2016, he completed an unprecedented "triple-triple," winning gold in the 100 meters, 200 meters, and 4x100 meters relay for the third straight Olympics.</p>
+
+    <p><strong>World Championships Success:</strong></p>
+    <p>In addition to his Olympic victories, Bolt excelled at the World Championships, winning 11 gold medals. His 2009 performances in Berlin, where he set world records in the 100 meters (9.58 seconds) and 200 meters (19.19 seconds), are among the greatest in history.</p>
+
+    <p><strong>Retirement and Legacy:</strong></p>
+    <p>Bolt retired in 2017 after the World Championships, where he finished third in the 100 meters. His impact on athletics is unmatched, with his world records still standing. Beyond sports, his charismatic personality and influence have inspired a generation of athletes, solidifying his legacy as one of the greatest sprinters of all time.</p>
+
+        </div>
+    
+        <!-- P. V. Sindhu -->
+        <div id="sindhu" class="personality-info" style="display: none;">
+            <h2 style="text-align: center;">P. V. Sindhu</h2>
+            <img src="./pv-sindhu.jpg" alt="P. V. Sindhu" style="width: 400px; height: auto; display: block; margin-left: auto; margin-right: auto;">
+            <p><strong>Early Life and Start in Badminton:</strong></p>
+            <p>P. V. Sindhu was born on July 5, 1995, in Hyderabad, India. She began playing badminton at a young age, inspired by the success of Pullela Gopichand, a former All England Open Badminton Champion. Under the guidance of Gopichand, Sindhu quickly rose through the ranks of Indian and international badminton.</p>
+        
+            <p><strong>Olympic Success in 2016:</strong></p>
+            <p>Sindhu gained global attention during the 2016 Rio Olympics, where she became the first Indian woman to win a silver medal in badminton. Her intense final against Spain's Carolina Marín was one of the highlights of the tournament, establishing her as one of the top players worldwide.</p>
+        
+            <p><strong>Continued International Success:</strong></p>
+            <p>After her Olympic success, Sindhu continued performing well in international tournaments. She won multiple World Championship medals, including a gold in 2019, becoming the first Indian to achieve this feat. Sindhu also won several Super Series titles, solidifying her position among the world's top badminton players.</p>
+        
+            <p><strong>Tokyo Olympics 2020:</strong></p>
+            <p>At the 2020 Tokyo Olympics, Sindhu added a bronze medal, making her the first Indian woman to win two Olympic medals in badminton. This achievement further solidified her status as one of India’s most successful athletes.</p>
+        
+            <p><strong>Legacy and Impact:</strong></p>
+            <p>Sindhu's achievements have inspired a new generation of badminton players in India. Her disciplined approach, combined with her global successes, has made her a role model for young athletes across the country. She continues to compete at the highest level, aiming for more victories.</p>
+        
+        </div>
+        <div id="phelps" class="personality-info" style="display: none;">
+            <h2 style="text-align: center;">Michael Phelps</h2>
+            <img src="./michael-phelps.jpeg" alt="Usain Bolt" style="width: 400px; height: auto; display: block; margin-left: auto; margin-right: auto;">
+            <p><strong>Early Life and Introduction to Swimming:</strong></p>
+            <p>Michael Phelps was born on June 30, 1985, in Baltimore, Maryland, USA. He began swimming at seven and made his Olympic debut at 15 at the 2000 Sydney Olympics. Although he did not win any medals in Sydney, his potential as a future swimming great was evident.</p>
+        
+            <p><strong>Olympic Dominance in 2004:</strong></p>
+            <p>Phelps' breakthrough came at the 2004 Athens Olympics, where he won six gold and two bronze medals. His versatility in different swimming strokes and distances was unmatched, and he became a global swimming sensation.</p>
+        
+            <p><strong>Beijing 2008: Record-breaking Feat:</strong></p>
+            <p>At the 2008 Beijing Olympics, Phelps made history by winning eight gold medals, breaking the record for the most golds in a single Olympics. His dominance in both individual and relay events cemented his status as the greatest swimmer of all time.</p>
+        
+            <p><strong>London and Rio Olympics:</strong></p>
+            <p>Phelps added four more golds and two silvers at the 2012 London Olympics. After briefly retiring, he returned to the 2016 Rio Olympics, winning five more golds and a silver, bringing his career total to 23 Olympic golds and 28 medals overall.</p>
+        
+            <p><strong>Legacy and Post-Retirement:</strong></p>
+            <p>Phelps retired as the most decorated Olympian ever. Beyond his accomplishments, he has become a mental health advocate, sharing his struggles with depression and supporting mental wellness for athletes globally.</p>
+        
+        </div>
+        <div id="bindra" class="personality-info" style="display: none;">
+            <h2 style="text-align: center;">Abhinav Bindra</h2>
+            <img src="./abhinav-bindra.jpg" alt="Usain Bolt" style="width: 400px; height: auto; display: block; margin-left: auto; margin-right: auto;">
+            <p><strong>Early Life and Entry into Shooting:</strong></p>
+    <p>Abhinav Bindra was born on September 28, 1982, in Dehradun, India. His shooting talent was evident from a young age, and he went on to train under expert guidance. By 18, he had already competed in his first Olympics at Sydney 2000.</p>
+
+    <p><strong>Olympic Gold in 2008:</strong></p>
+    <p>Bindra made history at the 2008 Beijing Olympics by winning gold in the 10-meter air rifle event, becoming the first Indian individual athlete to win an Olympic gold medal. His achievement brought recognition to Indian shooting on the global stage.</p>
+
+    <p><strong>World Championships and Other Achievements:</strong></p>
+    <p>Bindra’s Olympic gold was the pinnacle of a career that included multiple World Championship medals and successes at the Commonwealth and Asian Games. His consistent performances over two decades made him one of India's finest athletes.</p>
+
+    <p><strong>Retirement and Contributions to Sports:</strong></p>
+    <p>After retiring from competitive shooting, Bindra focused on promoting sports development in India. His foundation works to improve the infrastructure for Olympic sports, aiming to inspire the next generation of Indian athletes.</p>
+
+    <p><strong>Legacy:</strong></p>
+    <p>Abhinav Bindra’s Olympic triumph remains a significant milestone in Indian sports history. His success paved the way for future Indian athletes to pursue excellence at the Olympic level.</p>
+
+        </div>
+        <div id="lewis" class="personality-info" style="display: none;">
+            <img src="./carl-lewis.jpg" alt="Person 7" style="width: 400px; height: auto; display: block; margin-left: auto; margin-right: auto;">
+            <p><strong>Early Life and Athletic Beginnings:</strong></p>
+    <p>Carl Lewis was born on July 1, 1961, in Birmingham, Alabama, USA. He initially showed interest in long jump and sprinting and quickly established himself as a dominant force in track and field during his high school and college years.</p>
+
+    <p><strong>Olympic Success in 1984:</strong></p>
+    <p>At the 1984 Los Angeles Olympics, Lewis won four gold medals in the 100 meters, 200 meters, long jump, and 4x100 meters relay. His remarkable versatility and dominance drew comparisons to the legendary Jesse Owens.</p>
+
+    <p><strong>Continued Olympic Success:</strong></p>
+    <p>Lewis continued to win Olympic medals in the 1988 Seoul, 1992 Barcelona, and 1996 Atlanta Games. He secured a total of nine Olympic golds across four Olympic Games, including four consecutive long jump golds, making him one of the most decorated athletes in Olympic history.</p>
+
+    <p><strong>World Championships Glory:</strong></p>
+    <p>Lewis was equally successful at the World Championships, winning eight golds and one silver. His ability to dominate both sprints and long jump was unparalleled.</p>
+
+    <p><strong>Legacy and Impact:</strong></p>
+    <p>Carl Lewis is regarded as one of the greatest track and field athletes of all time. His records, achievements, and sportsmanship left a lasting legacy, influencing future generations of sprinters and jumpers.</p>
+
+        </div>
+        <div id="mary" class="personality-info" style="display: none;">
+            <h2 style="text-align: center;">Mary Kom</h2>
+            <img src="./Marykom.jpg" alt="Person 7" style="width: 400px; height: auto; display: block; margin-left: auto; margin-right: auto;">
+            <p><strong>Early Life and Introduction to Boxing:</strong></p>
+    <p>Mary Kom, born on November 24, 1982, in Manipur, India, grew up in a farming family. Her interest in boxing was sparked by the success of fellow Manipuri boxer Dingko Singh. Despite opposition from her family, Kom pursued boxing, training under coach M. Narjit Singh, and quickly rose through the ranks of Indian boxing.</p>
+
+    <p><strong>International Breakthrough:</strong></p>
+    <p>Mary Kom’s international breakthrough came in 2002 when she won a silver medal at the World Women's Boxing Championship. She followed this with a gold at the 2003 championship, marking her arrival as one of the world’s top female boxers. She continued to dominate the flyweight division in the years that followed.</p>
+
+    <p><strong>Olympic Success in 2012:</strong></p>
+    <p>In 2012, women’s boxing was introduced at the Olympics, and Mary Kom represented India in the 51 kg category. She won a bronze medal, becoming the first Indian female boxer to win an Olympic medal. Her resilience and skill made her a national icon.</p>
+    <p><strong>World Championships and Other Achievements:</strong></p>
+    <p>Throughout her career, Kom has won a record six World Championship titles. She also won gold at the Asian Games and Commonwealth Games, proving her longevity and consistency at the highest level of boxing.</p>
+
+    <p><strong>Legacy and Impact:</strong></p>
+    <p>Mary Kom’s achievements have paved the way for female athletes in India, particularly in combat sports. Her story of perseverance has inspired millions. Despite her age, she continues to compete, and her impact on Indian sports is immeasurable.</p>
+
+        </div>
+        <div id="simone" class="personality-info" style="display: none;">
+            <h2 style="text-align: center;">Simone Biles</h2>
+            <img src="./simone-biles.jpeg" alt="Person 7" style="width: 400px; height: auto; display: block; margin-left: auto; margin-right: auto;">
+            <p><strong>Early Life and Start in Gymnastics:</strong></p>
+    <p>Simone Biles was born on March 14, 1997, in Columbus, Ohio, USA. She started gymnastics at a young age and quickly gained recognition for her exceptional talent. Biles began her elite gymnastics career in 2013, winning her first World Championship titles and establishing herself as one of the sport’s rising stars.</p>
+
+    <p><strong>Breakthrough at the 2016 Rio Olympics:</strong></p>
+    <p>Biles made her Olympic debut at the 2016 Rio Olympics, where she won four gold medals and one bronze. She dominated the gymnastics competition, excelling in the all-around, vault, floor, and team events, showcasing her remarkable strength, technique, and artistry.</p>
+
+    <p><strong>World Championships Dominance:</strong></p>
+    <p>In addition to her Olympic success, Biles has dominated the World Championships, winning a record 25 World Championship medals, including 19 golds. Her routines are known for their difficulty, with several gymnastics elements named after her due to their complexity.</p>
+
+    <p><strong>Tokyo 2020 Olympics:</strong></p>
+    <p>At the 2020 Tokyo Olympics, Biles faced mental health challenges, which led her to withdraw from most events. Despite this, she won a bronze medal on the balance beam, demonstrating her resilience and ability to prioritize mental well-being. Her decision to speak openly about mental health brought the issue to the forefront in sports.</p>
+
+    <p><strong>Legacy and Impact:</strong></p>
+    <p>Simone Biles is considered one of the greatest gymnasts of all time. Her impact extends beyond her medals, as she has become a strong advocate for athletes’ mental health. Her influence on gymnastics, combined with her advocacy, makes her a trailblazer in the world of sports.</p>
+
+        </div>
+        <div id="neeraj" class="personality-info" style="display: none;">
+            <h2 style="text-align: center;">Neeraj Chopra: India's Javelin Throwing Sensation</h2>
+            <img src="./neeraj-chopra.jpeg" alt="Person 7" style="width: 400px; height: auto; display: block; margin-left: auto; margin-right: auto;">
+            <p><strong>Early Life and Career Beginnings:</strong></p>
+            <p>Neeraj Chopra, a rising star in the world of athletics, hails from Panipat, Haryana, India. Born in 1997, Chopra's journey to Olympic glory began at a young age. His natural athleticism and talent for javelin throwing were evident from the start, and he quickly emerged as a promising athlete.</p>
+        
+            <p><strong>Domestic Dominance and International Recognition:</strong></p>
+            <p>Chopra's dominance in domestic competitions was undeniable, and he soon made a name for himself on the international stage. He represented India at various international tournaments, consistently showcasing his exceptional skills. His impressive performances earned him accolades and recognition from the sporting world.</p>
+        
+            <p><strong>Olympic Breakthrough and Historic Gold:</strong></p>
+            <p>The year 2021 marked a significant milestone in Chopra's career. At the Tokyo Olympics, he made history by becoming the first Indian athlete to win an Olympic gold medal in javelin throw. His historic throw of 87.58 meters not only secured him the top spot but also shattered the Asian record. This victory was a momentous occasion for Indian sports, and Chopra became a national hero overnight.</p>
+        
+            <p><strong>World Athletics Championships Glory:</strong></p>
+            <p>Following his Olympic triumph, Chopra continued to excel on the international stage. In 2022, he clinched the gold medal at the World Athletics Championships, solidifying his position as one of the world's leading javelin throwers. This victory added another feather to his cap and further cemented his reputation as a global sporting icon.</p>
+        
+            <p><strong>Inspiring Future Generations:</strong></p>
+            <p>Chopra's achievements have inspired countless young athletes in India to pursue their dreams in sports. His success has ignited a passion for athletics and javelin throwing among the youth, and he has become a role model for many aspiring athletes. As Chopra continues to break records and achieve new heights, his legacy will undoubtedly inspire future generations of Indian athletes.</p>
+        
+        </div>
+        <div id="jesse" class="personality-info" style="display: none;">
+            <h2 style="text-align: center;">Jesse Owens: The Olympic Legend</h2>
+            <img src="./jesse-owens.jpeg" alt="Person 7" style="width: 400px; height: auto; display: block; margin-left: auto; margin-right: auto;">
+            <p><strong>Early Life and Career Beginnings:</strong></p>
+            <p>Jesse Owens, a legendary American track and field athlete, was born in Decatur, Alabama, in 1913. His athletic talents were evident from a young age, and he quickly excelled in various sports. Owens's most notable achievements came in track and field, where he dominated the sprint and long jump events.</p>
+        
+            <p><strong>Olympic Dominance and Historic Triumph:</strong></p>
+            <p>Owens's greatest moment came at the 1936 Berlin Olympics. Despite the prevailing political climate of the time, Owens defied expectations and delivered a stunning performance. He won four gold medals in the 100 meters, 200 meters, long jump, and 4x100 meter relay. His victories were a significant blow to Adolf Hitler's propaganda machine, which sought to promote Aryan supremacy.</p>
+        
+            <p><strong>Breaking World Records and Athletic Excellence:</strong></p>
+            <p>Owens's Olympic triumph was just one highlight of his illustrious career. He held world records in multiple events, including the 100 meters, 200 meters, and long jump. His athletic prowess and speed earned him the nickname "The Buckeye Bullet."</p>
+        
+            <p><strong>Post-Olympic Career and Legacy:</strong></p>
+            <p>After his Olympic success, Owens continued to compete and achieve remarkable feats. He remained an active athlete for many years, inspiring countless others with his talent and determination. Owens's legacy extends far beyond his athletic accomplishments. He became a symbol of hope and resilience, demonstrating that human spirit can triumph over adversity.</p>
+        
+        </div>
+        <div id="Saina" class="personality-info" style="display: none;">
+            <h2 style="text-align: center;">Saina Nehwal: India's Badminton Queen</h2>
+            <img src="./saina-nehwal.jpg" alt="Person 7" style="width: 400px; height: auto; display: block; margin-left: auto; margin-right: auto;">
+            <p><strong>Early Life and Career Beginnings:</strong></p>
+            <p>Saina Nehwal, a renowned Indian badminton player, was born in Hisar, Haryana, in 1988. Her passion for badminton began at a young age, and she quickly displayed exceptional talent. Nehwal's dedication and hard work led her to become one of India's most prominent athletes.</p>
+        
+            <p><strong>Domestic and International Success:</strong></p>
+            <p>Nehwal's domestic dominance was evident from an early age, and she soon made a name for herself on the international stage. She represented India at numerous tournaments, consistently achieving impressive results. Nehwal's breakthrough came in 2009 when she became the first Indian woman to reach the quarterfinals of the World Badminton Championships.</p>
+        
+            <p><strong>Olympic Medalist and World No. 1:</strong></p>
+            <p>Nehwal's greatest achievement came at the London 2012 Olympics, where she won a bronze medal in women's singles badminton. This historic victory marked a significant milestone for Indian badminton, and Nehwal became a national hero. In 2015, Nehwal reached the pinnacle of her career by becoming the world No. 1 in women's singles badminton.</p>
+        
+            <p><strong>Inspiring Future Generations:</strong></p>
+            <p>Nehwal's success has inspired countless young athletes in India to pursue their dreams in badminton. Her dedication, hard work, and perseverance have made her a role model for many aspiring athletes. As Nehwal continues to contribute to Indian badminton, her legacy will undoubtedly inspire future generations.</p>
+        
+        </div>
+        <div id="nadia" class="personality-info" style="display: none;">
+            <h2 style="text-align: center;">Nadia Comăneci: The Perfect Ten</h2>
+            <img src="./nadia-comaneci.jpg" alt="Person 7" style="width: 400px; height: auto; display: block; margin-left: auto; margin-right: auto;">
+            <p><strong>Early Life and Career Beginnings:</strong></p>
+    <p>Nadia Comăneci, a Romanian gymnast, was born in Onesti in 1961. Her exceptional talent and athleticism were evident from a young age. Comăneci's dedication to gymnastics led her to become one of the greatest athletes of all time.</p>
+
+    <p><strong>Olympic Dominance and Historic Achievement:</strong></p>
+    <p>Comăneci's greatest moment came at the 1976 Montreal Olympics. She became the first gymnast in history to score a perfect 10 in an Olympic competition. This historic achievement was a testament to her extraordinary skills and technical prowess. Comăneci went on to win five gold medals at the Montreal Olympics, cementing her status as one of the greatest gymnasts of all time.</p>
+
+    <p><strong>Post-Olympic Career and Legacy:</strong></p>
+    <p>After her Olympic triumphs, Comăneci continued to be involved in gymnastics. She served as a coach and judge, sharing her expertise with younger generations. Comăneci's legacy extends far beyond her athletic achievements. She became a symbol of hope and inspiration, demonstrating the power of human potential.</p>
+
+        </div>
+        <div id="milkha" class="personality-info" style="display: none;">
+            <h2 style="text-align: center;">Milkha Singh: The Flying Sikh</h2>
+            <img src="./milkha-singh.jpeg" alt="Person 7" style="width: 400px; height: auto; display: block; margin-left: auto; margin-right: auto;">
+            <p><strong>Early Life and Career Beginnings:</strong></p>
+            <p>Milkha Singh, a legendary Indian sprinter, was born in Punjab in 1932. His life was marked by adversity, as he faced poverty and the loss of his family during the Partition of India. Despite these challenges, Singh's determination and athletic talent led him to become one of India's most celebrated athletes.</p>
+        
+            <p><strong>Domestic and International Success:</strong></p>
+            <p>Singh's domestic dominance was evident from an early age. He won numerous national championships and represented India at various international tournaments. His greatest achievement came at the 1958 Commonwealth Games, where he won gold medals in the 440 yards and 1 mile races. Singh's exceptional speed earned him the nickname "The Flying Sikh."</p>
+        
+            <p><strong>Olympic Representation and Legacy:</strong></p>
+            <p>Singh represented India at the 1956 and 1960 Olympics. While he did not win an Olympic medal, his performances were a source of pride for the nation. Singh's legacy extends far beyond his athletic achievements. He became a symbol of hope and inspiration, demonstrating the power of human spirit to overcome adversity.</p>
+        
+        </div>
+        <div id="laria" class="personality-info" style="display: none;">
+            <h2 style="text-align: center;">Larisa Latynina: The Queen of Gymnastics</h2>
+            <img src="./larisa-latynina.jpeg" alt="Person 7" style="width: 400px; height: auto; display: block; margin-left: auto; margin-right: auto;">
+            <p><strong>Early Life and Career Beginnings:</strong></p>
+    <p>Larisa Latynina, a Soviet gymnast, was born in Kherson in 1938. Her exceptional talent and athleticism were evident from a young age. Latynina's dedication to gymnastics led her to become one of the greatest athletes of all time.</p>
+
+    <p><strong>Olympic Dominance and Record-Breaking Achievements:</strong></p>
+    <p>Latynina's greatest achievements came at the Olympic Games. She participated in four Olympics (1956, 1960, 1964, and 1968), winning a total of 18 medals, including nine golds. Latynina holds the record for the most Olympic medals won by a female athlete. Her dominance in gymnastics was unparalleled.</p>
+
+    <p><strong>Post-Olympic Career and Legacy:</strong></p>
+    <p>After her Olympic career, Latynina continued to be involved in gymnastics. She served as a coach and judge, sharing her expertise with younger generations. Latynina's legacy extends far beyond her athletic achievements. She became a symbol of strength and determination, inspiring countless athletes around the world.</p>
+
+        </div>
+        <div id="deepika" class="personality-info" style="display: none;">
+            <h2 style="text-align: center;">Deepika Kumari: India's Archery Queen</h2>
+            <img src="./deepika-kumari.jpg" alt="Person 7" style="width: 400px; height: auto; display: block; margin-left: auto; margin-right: auto;">
+            <p><strong>Early Life and Career Beginnings:</strong></p>
+            <p>Deepika Kumari, an Indian archer, was born in Ranchi, Jharkhand, in 1994. Her passion for archery began at a young age, and she quickly displayed exceptional talent. Kumari's dedication and hard work led her to become one of India's most prominent athletes.</p>
+        
+            <p><strong>Domestic and International Success:</strong></p>
+            <p>Kumari's domestic dominance was evident from an early age, and she soon made a name for herself on the international stage. She represented India at numerous tournaments, consistently achieving impressive results. Kumari's breakthrough came in 2010 when she became the world No. 1 in women's recurve archery.</p>
+        
+            <p><strong>Olympic Representation and Legacy:</strong></p>
+            <p>Kumari has represented India at multiple Olympics, including the 2012 London Olympics and the 2020 Tokyo Olympics. While she has yet to win an Olympic medal, her consistent performances have made her a respected figure in the world of archery. Kumari's legacy extends beyond her athletic achievements. She has become a role model for young athletes in India, inspiring them to pursue their dreams.</p>
+        
+        </div>
+    
+        <!-- Add more information sections for each personality -->
+        <!-- Example for person 7 -->
+        <div id="mo" class="personality-info" style="display: none;">
+            <h2 style="text-align: center;">Mo Farah: The British Distance Running Legend</h2>
+            <img src="./mo-farah.jpeg" alt="Person 7" style="width: 400px; height: auto; display: block; margin-left: auto; margin-right: auto;">
+            <p><strong>Early Life and Career Beginnings:</strong></p>
+            <p>Mo Farah, a British long-distance runner, was born in Somalia in 1983. His family emigrated to the United Kingdom when he was young. Farah's athletic talents were evident from an early age, and he excelled in both cross-country and track running.</p>
+        
+            <p><strong>Domestic and International Success:</strong></p>
+            <p>Farah's domestic dominance was undeniable, and he soon made a name for himself on the international stage. He represented Great Britain at numerous tournaments, consistently achieving impressive results. Farah's breakthrough came in 2011 when he won the 5000 meters and 10000 meters titles at the World Championships.</p>
+        
+            <p><strong>Olympic Dominance and Double Gold:</strong></p>
+            <p>Farah's greatest achievements came at the Olympic Games. He won the 5000 meters and 10000 meters gold medals at both the 2012 London Olympics and the 2016 Rio de Janeiro Olympics. This unprecedented "double-double" solidified Farah's status as one of the greatest distance runners of all time.</p>
+        
+            <p><strong>Post-Olympic Career and Legacy:</strong></p>
+            <p>After his Olympic triumphs, Farah continued to compete at a high level. He remained a dominant force in long-distance running, winning multiple world championships and breaking world records. Farah's legacy extends far beyond his athletic achievements. He has become a symbol of inspiration, demonstrating the power of human spirit and the importance of perseverance.</p>
+        
+        </div>
+    
+        
+        <div id="vinesh" class="personality-info" style="display: none;">
+            <h2 style="text-align: center;">Vinesh Phogat: India's Wrestling Icon</h2>
+            <img src="./vinesh-phogat.jpeg" alt="Vinesh Phogat" style="width: 400px; height: auto; display: block; margin-left: auto; margin-right: auto;">
+            
+            <p><strong>Early Life and Wrestling Family:</strong></p>
+            <p>Vinesh Phogat was born on August 25, 1994, in Balali, Haryana, India. She hails from the famous Phogat family, known for producing elite wrestlers. Inspired by her cousins, Geeta and Babita Phogat, Vinesh started training at a young age under her uncle, Mahavir Singh Phogat.</p>
+        
+            <p><strong>International Breakthrough:</strong></p>
+            <p>Vinesh's international career took off when she won the bronze medal at the 2013 Asian Wrestling Championships. She continued to rise, winning a gold medal at the 2014 Commonwealth Games in the 48 kg category, which cemented her status as one of India's top wrestlers.</p>
+        
+            <p><strong>Setbacks and Comeback:</strong></p>
+            <p>Vinesh Phogat faced a major setback during the 2016 Rio Olympics, where a knee injury forced her out of the competition. However, she made a remarkable comeback, winning gold at the 2018 Commonwealth Games and Asian Games, becoming the first Indian woman to do so in wrestling.</p>
+        
+            <p><strong>Legacy and Impact:</strong></p>
+            <p>Vinesh Phogat's journey has been one of resilience and perseverance. She has become a symbol of determination, inspiring women across India to pursue wrestling and sports. Her continued success on the mat, combined with her fighting spirit, has earned her numerous accolades and respect as one of India's greatest athletes.</p>
+        </div>
+        <div id="avani" class="personality-info" style="display: none;">
+            <h2 style="text-align: center;">Avani Lekhara: India's Paralympic Shooting Champion</h2>
+            <img src="./avani-lekhara.jpeg" alt="Avani Lekhara" style="width: 400px; height: auto; display: block; margin-left: auto; margin-right: auto;">
+            
+            <p><strong>Early Life and Tragic Accident:</strong></p>
+            <p>Avani Lekhara was born on November 8, 2001, in Jaipur, Rajasthan, India. Her life took a drastic turn when she was involved in a car accident at the age of 11, which left her paralyzed from the waist down. Despite this, Avani's determination to succeed led her to pursue sports, eventually focusing on shooting.</p>
+        
+            <p><strong>Introduction to Shooting:</strong></p>
+            <p>Avani started shooting in 2015, inspired by former Olympic champion Abhinav Bindra. Her hard work and focus led her to rise quickly in the sport, and she competed in national and international events, steadily improving her performance.</p>
+        
+            <p><strong>Paralympic Glory:</strong></p>
+            <p>Avani Lekhara made history at the 2020 Tokyo Paralympics (held in 2021) by becoming the first Indian woman to win a Paralympic gold medal in shooting. She achieved this in the 10m air rifle standing SH1 event. She also won a bronze in the 50m rifle 3 positions SH1 event, becoming a double medalist at her debut Paralympic Games.</p>
+        
+            <p><strong>Legacy and Inspiration:</strong></p>
+            <p>Avani Lekhara's achievements have inspired countless people, not only in India but worldwide. She has shown that physical limitations do not define one's potential, and her journey from tragedy to triumph is a symbol of resilience and courage. Her Paralympic success has put her on the map as one of India's finest athletes.</p>
+        </div>
+        <div id="navdeep" class="personality-info" style="display: none;">
+            <h2 style="text-align: center;">Navdeep Singh: India's Para Javelin Throw Champion</h2>
+            <img src="./navdeep-singh.jpeg" alt="Navdeep Singh" style="width: 400px; height: auto; display: block; margin-left: auto; margin-right: auto;">
+            
+            <p><strong>Early Life and Introduction to Sports:</strong></p>
+            <p>Navdeep Singh was born in 1996 in Haryana, India. From a young age, Navdeep showed an interest in athletics. Despite physical challenges, he was determined to pursue sports and found his passion in javelin throw, where he quickly excelled.</p>
+        
+            <p><strong>Rise to National and International Success:</strong></p>
+            <p>Navdeep Singh's hard work paid off as he began competing in para-athletics events. His national-level performances earned him a spot on the Indian para-athletics team, and he started making a name for himself on the international stage with consistent performances.</p>
+        
+            <p><strong>Paralympic Achievements:</strong></p>
+            <p>At the 2020 Tokyo Paralympics (held in 2021), Navdeep Singh competed in the javelin throw F41 category. His impressive throws helped him finish among the top athletes, making him a symbol of India's emerging dominance in para-athletics. Although he missed a medal, his performance was celebrated across the nation.</p>
+        
+            <p><strong>Legacy and Impact:</strong></p>
+            <p>Navdeep Singh's journey has inspired many young athletes with disabilities to take up sports. His determination and perseverance have made him a role model for the para-sports community in India. His achievements continue to inspire others to overcome challenges and strive for excellence in their fields.</p>
+        </div>
+        <div id="dharambir" class="personality-info" style="display: none;">
+            <h2 style="text-align: center;">Dharambir: India's Club Throw Champion</h2>
+            <img src="./dharambir.jpeg" alt="Dharambir" style="width: 400px; height: auto; display: block; margin-left: auto; margin-right: auto;">
+            
+            <p><strong>Early Life and Journey into Para Athletics:</strong></p>
+            <p>Dharambir, born in Haryana, India, faced numerous challenges throughout his life due to his physical disabilities. However, his passion for sports never wavered, and he eventually found his calling in para-athletics, particularly excelling in the club throw event.</p>
+        
+            <p><strong>Success at the National and International Level:</strong></p>
+            <p>Dharambir worked tirelessly to perfect his technique in the club throw. His dedication and hard work paid off as he quickly rose through the ranks, becoming one of India's top para-athletes in the F51 category. He showcased his talent at various national and international competitions, consistently winning medals.</p>
+        
+            <p><strong>Gold Medal at the 2024 Paris Paralympics:</strong></p>
+            <p>Dharambir's crowning achievement came at the 2024 Paris Paralympics, where he won the gold medal in the Men's Club Throw F51 category. His performance not only earned him the top spot but also set a new Asian record with a throw of 34.92 meters. This victory further solidified his status as one of India's premier para-athletes.</p>
+        
+            <p><strong>Inspiring Legacy:</strong></p>
+            <p>Dharambir's journey from adversity to becoming a Paralympic gold medalist is an inspiration to millions. His determination, resilience, and unwavering spirit have made him a role model for aspiring para-athletes across India. Dharambir's legacy will continue to inspire future generations to pursue their dreams despite the challenges they may face.</p>
+        </div>
+
+
+        </div>   
+
+        <div class="main-content">
+            <div id="home-content" class="tab-content active-content">
+                <div class="info-box">
+                    <!-- Carousel container -->
+                    <div class="carousel">
+                        <div class="carousel-images" id="carousel-images">
+                            <img src="./arch1.avif" alt="Image 1">
+                            <img src="./box1.avif" alt="Image 2">
+                            <img src="./box2.jpeg" alt="Image 3">
+                            <img src="./jav1.jpeg" alt="Image 4">
+                            <img src="./tenn4.avif" alt="Image 5">
+                        </div>
+                    </div>
+                </div>
+                
+                <section class="info-boxes">
+                    <div class="info-box">
+                        <img class="info-box-img" src="./welcome.png" alt="Welcome image">
+                    </div>
+                    <div class="info-box">
+                        <h3>Welcome to Sports Awareness</h3>
+                        <p>Discover the world of sports through engaging content, historical insights, and the latest health benefits. Our mission is to promote active lifestyles and well-being by providing valuable information about various sports and their impact on health. Explore our resources to learn about the evolution of sports, stay updated on health benefits, and find out how you can get involved in sports activities for a healthier life. Join us on this journey to enhance your knowledge and inspire a more active and fulfilling lifestyle!</p>
+                    </div>
+                </section>
+            
+                <section class="video-container">
+                    <h3>Watch Our Latest Videos</h3>
+                    <div class="videos">
+                        <div class="video-box" id="video1-placeholder">
+                            <!-- Video 1 will be inserted here -->
+                        </div>
+                        <div class="video-box" id="video2-placeholder">
+                            <!-- Video 2 will be inserted here -->
+                        </div>
+                        <div class="video-box" id="video3-placeholder">
+                            <!-- Video 3 will be inserted here -->
+                        </div>
+                    </div>
+                </section>
+
+                <section class="video-container">
+                    <h3>Watch More Videos from Our Collection</h3>
+                    <div class="videos">
+                        <div class="video-box" id="local-video1">
+                            <video controls width="100%" height="auto">
+                                <source src="./aayush-video.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="video-box" id="local-video2">
+                            <video controls width="100%" height="auto">
+                                <source src="./aagam-video.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="video-box" id="local-video3">
+                            <video controls width="100%" height="auto">
+                                <source src="./ram-video.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="info-boxes">
+                    <div class="info-box">
+                        <h3>Sports Accessibility</h3>
+                        <p>We strive to make sports accessible to everyone. Our mission is to encourage people of all ages to engage in physical activity and enjoy the numerous benefits of an active lifestyle.</p>
+                    </div>
+                    
+                    <div class="news-container">
+                        <div class="info-box">
+                            <h3>Latest News</h3>
+                        </div>
+                        <div class="news-content" id="news-content">
+                            <p><a href="https://www.icc-cricket.com/news/1234567" target="_blank">🏏 2024 Men's T20 World Cup: India hosted the tournament from October 10 to October 30!</a></p>
+                            <p><a href="https://www.prokabaddi.com/news/1234568" target="_blank">🤼 Pro Kabaddi League Season 11: Kicked off on October 11, 2024!</a></p>
+                            <p><a href="https://www.indiansuperleague.com/news/1234569" target="_blank">⚽ Indian Super League: Season began on November 25, 2024!</a></p>
+                            <p><a href="https://www.womensworldt20.com/news/1234570" target="_blank">🏆 Women's T20 World Cup: India participated from October 1 to October 14!</a></p>
+                            <p><a href="https://www.chennai-marathon.com/news/1234571" target="_blank">🏃 Chennai Marathon: Took place on December 8, 2024!</a></p>
+                        </div>
+                    </div>
+                    
+        
+    </div>
+    <div id="history-content" class="tab-content active-content"> 
+        
+        
+        <div class="section-content">
+            <!-- Introduction Section -->
+            <div class="box">
+                <h2>Introduction</h2>
+                <p>Sports have always been a unifying force, fostering health, competition, and camaraderie. The history of sports dates back to ancient civilizations, and today, it is a global phenomenon with the power to bring people together. This page explores the fascinating journey of sports through time and the growing awareness surrounding it.</p>
+            </div>
+        
+            <!-- Early Beginnings Section -->
+            <div class="box">
+                <h2>Early Beginnings of Sports</h2>
+                <p>Sports can be traced back to ancient Greece, Rome, and Egypt, where physical contests like wrestling, archery, and running were essential parts of life. The first Olympic Games in 776 BC marked the formalization of sports in Greece, where athletes competed in various events, including foot races and discus throwing.</p>
+            </div>
+        
+            <!-- Growth and Globalization of Sports -->
+            <div class="box">
+                <h2>Growth and Globalization of Sports</h2>
+                <p>The modern revival of the Olympics in 1896 led to the internationalization of sports. This era saw the birth of various international competitions such as the FIFA World Cup and professional leagues like the NBA. With advancements in transportation and media, sports rapidly became a global spectacle.</p>
+            </div>
+        
+            <!-- Social Impact of Sports -->
+            <div class="box">
+                <h2>Sports and Social Impact</h2>
+                <p>Sports have always had a powerful social impact, bringing people together and breaking down barriers. From the desegregation of sports to the push for gender equality, sports have led the way in social change. Additionally, the rise of awareness about physical activity has promoted sports as essential for health and wellness.</p>
+            </div>
+        
+            <!-- Technological Advancements in Sports -->
+            <div class="box">
+                <h2>Technological Advancements in Sports</h2>
+                <p>With the advent of technology, sports have evolved dramatically. From high-tech training equipment to the use of data analytics, athletes are now able to achieve more than ever. Innovations in media broadcasting have also made it possible for millions of fans to watch their favorite events live from anywhere in the world.</p>
+            </div>
+        
+            <!-- Key Milestones in Sports -->
+            <div class="box">
+                <h2>Key Milestones in Sports History</h2>
+                <ul>
+                    <li>776 BC: First Ancient Olympics</li>
+                    <li>1896: Modern Olympics Revival</li>
+                    <li>1930: First FIFA World Cup</li>
+                    <li>1960: First Paralympic Games</li>
+                    <li>1972: Title IX (Gender Equality in Sports)</li>
+                    <li>1983: India Wins Cricket World Cup</li>
+                    <li>1992: First Women's Olympic Boxing</li>
+                    <li>2000: Serena Williams Wins First Grand Slam</li>
+                    <li>2008: Usain Bolt Breaks World Records</li>
+                    <li>2008: Abhinav Bindra Wins India’s First Individual Olympic Gold</li>
+                    <li>2012: Mary Kom Wins Olympic Boxing Bronze</li>
+                    <li>2016: PV Sindhu Wins Silver at Rio Olympics (Badminton)</li>
+                    <li>2022: Lionel Messi Wins FIFA World Cup with Argentina</li>
+                </ul>
+            </div>
+            
+        
+            <!-- Website Mission and Evolution -->
+            <div class="box">
+                <h2>Evolution of Our Mission</h2>
+                <p>Our journey started with the vision to promote sports awareness globally. Through various campaigns, partnerships, and community initiatives, we have made strides in encouraging more people to participate in sports for a healthier life.</p>
+            </div>
+        
+            <!-- Image Section -->
+            
+        </div>
+
+<!-- Olympic Image Section(AAGAM2) -->
+<div class="info-box">
+    <h2>Olympic</h2>
+    <div class="image-grid">
+        <div class="image-column olympics-column">
+            <div class="x-box">
+                <img src="./Olympics1.JPG" alt="Olympics Image 1" />
+            </div>
+            <div class="image-box">
+                <img src="./Olympics2.jpg" alt="Olympics Image 2" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Paralympic Image Section(AAGAM2) -->
+<div class="info-box" style="clear: both; margin-top: 20px;"> <!-- Added clear and margin -->
+    <h2>Paralympic</h2>
+    <div class="image-grid">
+        <div class="image-column paralympics-column">
+            <div class="image-box">
+                <img src="./paralymics1.JPG" alt="Paralympics Image 1" />
+            </div>
+            <div class="image-box">
+                <img src="./Paralympics2.jpg" alt="Paralympics Image 2" />
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    </div>
+    
+    <div id="rules-content" class="tab-content active-content">
+        
+<div style="text-align: left;"    class="container">
+    <h2>General Criteria</h2>
+    
+    <ul>
+        <li>Objective of the game</li>
+        <li>Scoring system</li>
+        <li>Player positions and roles</li>
+        <li>Duration and structure of the game</li>
+        <li>Fair play and sportsmanship</li>
+        <li>Penalties for fouls and misconduct</li>
+        <li>Equipment requirements (e.g., ball, goalposts, uniforms)</li>
+        <li>Substitution policies for players</li>
+        <li>Time-outs or breaks (if applicable)</li>
+        <li>Refereeing and officiating decisions</li>
+    </ul>
+</div>
+
+    <h2>RULES FOR SPECIFIC SPORTS</h2>
+        <section class="info-boxes">
+            <!-- RULE Box -->
+             <!--FOOTBALL RULES-->
+            <div class="info-box">
+                <h3>FOOTBALL</h3>
+                <img src="./football.webp" alt="Physical Benefits Image" style="width: 100%; height:auto;">
+                <p>"Football is the ultimate battle. It’s not just about winning or losing—it’s about fighting for every inch, bleeding for your team, and leaving your heart on the pitch."
+
+                    </p>
+                <button class="read-more" data-popup="physical-benefits-content">Read More</button>
+            
+            </div>
+            
+             <!--CRICKET RULES-->
+            <div class="info-box">
+                <h3>CRICKET</h3>
+                <img src="./cricket.webp" alt="Mental Benefits Image" style="width:100%; height:auto;">
+                <p>"Cricket is not just a game, it’s a battle of endurance, precision, and heart. It’s about standing tall when the world is against you and making every ball, every run, and every moment count."</p>
+                <button class="read-more" data-popup="mental-benefits-content">Read More</button>
+            </div>
+            
+            <!--FIELD-HOCKEY RULES-->
+            <div class="info-box">
+                <h3>FIELD-HOCKEY</h3>
+                <img src=".//fieldhockey1.jpeg" alt="Social Benefits Image" style="width:100%; height:auto;">
+                <p>"Hockey is where warriors are forged. It’s a game of speed, strength, and sacrifice—where every stride, every hit, and every goal is earned with sweat and blood."</p>
+                <button class="read-more" data-popup="social-benefits-content">Read More</button>
+            </div>
+            
+        </section>
+    
+        <!-- Popup Container (Hidden by Default) -->
+        <div id="popup-overlay" class="popup-overlay">
+            <div id="popup-content" class="popup-content">
+                <span class="popup-close">&times;</span>
+                <div id="popup-body"></div>
+            </div>
+            <div id="physical-benefits-content" style="display:none;">
+                <h2>RULES FOR FOOTBALL</h2>
+                <p>☉Number of Players:
+                    Each team consists of 11 players on the field, including one goalkeeper.
+                    A match cannot start or continue if a team has fewer than 7 players.</p>
+                    <p>☉Duration of the Match:
+                        A standard football match is 90 minutes long, divided into two halves of 45 minutes each.
+                        There is a 15-minute halftime break.
+                        If needed, additional time (extra time) and penalty shootouts may occur.</p>
+                        <p>☉The Objective:
+                            The goal is to score more goals than the opponent by getting the ball into the opponent’s goalpost.
+                            A goal is scored when the entire ball crosses the goal line between the goalposts and beneath the crossbar.</p>
+                            <p>☉Ball in and Out of Play:
+                                The ball is out of play when it has fully crossed the goal line or touchline, either on the ground or in the air.
+                                The ball is in play at all other times, including when it rebounds from a goalpost or referee.</p>
+                                <p>☉Offside Rule:
+                                    A player is considered offside if they are closer to the opponent’s goal than both the ball and the second-last defender when the ball is passed to them.
+                                    A player in an offside position is only penalized if they are actively involved in the play.</p>
+                                
+            </div>
+            
+            <div id="mental-benefits-content" style="display:none;">
+                <h2>RULES FOR CRICKET</h2>
+                <p>☉Objective:
+                    The primary objective is to score more runs than the opposing team. A team’s innings ends when all players are out, or after a set number of overs.</p>
+                    <p>☉Number of Players:
+                        Each team consists of 11 players. One player is designated as the captain.</p>
+                        <p>☉Match Structure:
+                            A cricket match typically consists of one or two innings per team, depending on the format (e.g., Test, One Day International (ODI), Twenty20 (T20)).
+                            Test Matches: Last up to 5 days, with each team batting twice.
+                            ODI Matches: 50 overs per side, with each team batting once.
+                            T20 Matches: 20 overs per side, with each team batting once.</p>
+                            <p>☉Innings:
+                                An innings consists of one team batting while the other bowls and fields.
+                                The batting team tries to score runs, while the bowling team aims to dismiss the batsmen.</p>
+                                <p>☉Overs:
+                                    An over consists of 6 legitimate deliveries (balls) bowled by the same bowler.
+                                    After an over, a different bowler delivers from the opposite end of the pitch.</p>
+            </div>
+            
+            <div id="social-benefits-content" style="display:none;">
+                <h2>RULES FOR FIELD-HOCKEY</h2>
+                <p>☉Objective:
+                    The primary objective is to score more goals than the opposing team by hitting the ball into the opponent’s goal.</p>
+                    <p>☉Number of Players:
+                        Each team has 11 players on the field at a time: 10 field players and 1 goalkeeper.
+                        Teams also have substitute players who can replace field players during play.</p>
+                        <p>☉Match Duration:
+                            A standard field hockey match consists of two halves, each lasting 35 minutes, with a 5-10 minute halftime break.
+                            Some formats, such as tournaments, might have quarters (4x15 minutes) instead of halves.</p>
+                            <p>☉Fouls and Penalties:
+                                Common fouls include stick tackles, body contact, and dangerous play.
+                                Penalties can result in free hits, penalty corners, or penalty strokes.
+                                Free Hit: Awarded for minor fouls, taken from the spot where the foul occurred.
+                                Penalty Corner: Awarded for defensive fouls in the shooting circle, where attackers have a chance to take a direct shot.
+                                Penalty Stroke: Awarded for major fouls within the shooting circle, allowing the attacker a one-on-one shot against the goalkeeper.</p>
+                                <p>☉Free Hits and Penalty Corners:
+                                    Free Hit: The ball is placed on the ground and can be taken by the attacking or defending team depending on where the foul occurred.
+                                    Penalty Corner: Awarded for fouls committed within the shooting circle. The ball is placed on the edge of the circle and an attacker can take a direct shot on goal after a specific set of plays./p>
+    
+            </div>
+            
+        </div>
+        <section class="info-boxes">
+            <!-- Existing Sections... -->
+        
+            <!-- BASKETBALL RULES -->
+            <div class="info-box">
+                <h3>Basketball</h3>
+                <img src="./basketball1.jpeg" alt="Basketball Image" style="width:100%; height:auto;">
+                <p>"Basketball is a game of skill and strategy, where every shot, pass, and rebound counts. It’s about teamwork and determination, pushing your limits to achieve greatness."</p>
+                <button class="read-more" data-popup="basketball-rules-content">Read More</button>
+            </div>
+        
+            <!-- VOLLEYBALL RULES -->
+            <div class="info-box">
+                <h3>Volleyball</h3>
+                <img src="./volleyball.avif" alt="Volleyball Image" style="width:100%; height:auto;">
+                <p>"Volleyball is a sport of agility and precision. It’s about executing perfect serves, sets, and spikes, and working together as a team to outplay your opponents."</p>
+                <button class="read-more" data-popup="volleyball-rules-content">Read More</button>
+            </div>
+        
+            <!-- TENNIS RULES -->
+            <div class="info-box">
+                <h3>Tennis</h3>
+                <img src="./tennis.png" alt="Tennis Image" style="width:100%; height:auto;">
+                <p>"Tennis is a battle of endurance and finesse, where every serve, volley, and rally demands precision and resilience. It’s about mental toughness and skillful play."</p>
+                <button class="read-more" data-popup="tennis-rules-content">Read More</button>
+            </div>
+        </section>
+        
+        <!-- Popup Container (Hidden by Default) -->
+        <div id="popup-overlay" class="popup-overlay" style="display:none;">
+            <div id="popup-content" class="popup-content">
+                <span class="popup-close">&times;</span>
+                <div id="popup-body"></div>
+            </div>
+        
+            <!-- Existing Popups... -->
+        
+            <!-- BASKETBALL RULES CONTENT -->
+            <div id="basketball-rules-content" style="display:none;">
+                <h2>RULES FOR BASKETBALL</h2>
+                <p>☉Objective:
+                    The primary objective is to score more points than the opposing team by shooting the ball through the opponent’s hoop.</p>
+                <p>☉Number of Players:
+                    Each team has 5 players on the court at a time. Teams also have substitute players who can replace players during play.</p>
+                <p>☉Match Duration:
+                    A standard basketball game is divided into four quarters, each lasting 12 minutes (NBA) or 10 minutes (FIBA). There are breaks between quarters and a longer halftime break.</p>
+                <p>☉Scoring:
+                    Points are scored by making field goals (2 or 3 points) and free throws (1 point). A field goal is worth 2 points if taken from inside the three-point line and 3 points if taken from beyond it.</p>
+                <p>☉Fouls:
+                    Fouls can result in free throws for the opponent or a change in possession. Personal fouls, technical fouls, and flagrant fouls have different consequences.</p>
+            </div>
+        
+            <!-- VOLLEYBALL RULES CONTENT -->
+            <div id="volleyball-rules-content" style="display:none;">
+                <h2>RULES FOR VOLLEYBALL</h2>
+                <p>☉Objective:
+                    The primary objective is to score points by sending the ball over the net and into the opponent’s court, while preventing the ball from hitting your own court.</p>
+                <p>☉Number of Players:
+                    Each team consists of 6 players on the court at a time. Teams also have substitute players available.</p>
+                <p>☉Match Structure:
+                    A volleyball match is played in sets. The team that wins 3 out of 5 sets (or 2 out of 3 in some formats) wins the match. Sets are played to 25 points (or 15 in the deciding set).</p>
+                <p>☉Scoring:
+                    Points are scored by winning rallies. Each rally begins with a serve and ends when the ball hits the ground, goes out of bounds, or a fault is committed.</p>
+                <p>☉Rotation and Positioning:
+                    Teams must rotate positions after winning a serve from the opponent. Players must be in correct positions and cannot hit the ball consecutively by the same player.</p>
+            </div>
+        
+            <!-- TENNIS RULES CONTENT -->
+            <div id="tennis-rules-content" style="display:none;">
+                <h2>RULES FOR TENNIS</h2>
+                <p>☉Objective:
+                    The primary objective is to win points by hitting the ball over the net into the opponent’s court. The player who wins the most points wins the game, set, and match.</p>
+                <p>☉Number of Players:
+                    Tennis can be played as singles (one player per side) or doubles (two players per side).</p>
+                <p>☉Match Structure:
+                    A tennis match is played in sets. A set is won by the player who first wins 6 games, with at least a 2-game lead. Matches can be best-of-three or best-of-five sets.</p>
+                <p>☉Scoring:
+                    Points are scored as 15, 30, 40, and then game point. If the score reaches 40-40, it’s called deuce. A player must win two consecutive points to win the game from deuce.</p>
+                <p>☉Service:
+                    The server must serve from behind the baseline and hit the ball into the opponent’s service box. The serve must clear the net and land in the correct service area.</p>
+            </div>
+        </div>
+        <section class="info-boxes">
+            <!-- Existing Sections... -->
+        
+            <!-- BASEBALL RULES -->
+            <div class="info-box">
+                <h3>Baseball</h3>
+                <img src="./baseball.webp" alt="Baseball Image" style="width:100%; height:auto;">
+                <p>"Baseball is a game of precision and strategy. It’s about hitting the perfect pitch, executing strategic plays, and mastering the art of both offense and defense."</p>
+                <button class="read-more" data-popup="baseball-rules-content">Read More</button>
+            </div>
+        
+            <!-- RUGBY RULES -->
+            <div class="info-box">
+                <h3>Rugby</h3>
+                <img src="./rugby.png" alt="Rugby Image" style="width:100%; height:auto;">
+                <p>"Rugby is a game of physicality and endurance. It’s about playing with passion, tackling with intensity, and working as a cohesive unit to dominate the field."</p>
+                <button class="read-more" data-popup="rugby-rules-content">Read More</button>
+            </div>
+        
+            <!-- GOLF RULES -->
+            <div class="info-box">
+                <h3>Golf</h3>
+                <img src="./golf.jpeg" alt="Golf Image" style="width:100%; height:auto;">
+                <p>"Golf is a game of skill and patience. It’s about precision in every swing, strategic play on the course, and maintaining composure under pressure."</p>
+                <button class="read-more" data-popup="golf-rules-content">Read More</button>
+            </div>
+        </section>
+        
+        <!-- Popup Container (Hidden by Default) -->
+        <div id="popup-overlay" class="popup-overlay" style="display:none;">
+            <div id="popup-content" class="popup-content">
+                <span class="popup-close">&times;</span>
+                <div id="popup-body"></div>
+            </div>
+        
+            <!-- Existing Popups... -->
+        
+            <!-- BASEBALL RULES CONTENT -->
+            <div id="baseball-rules-content" style="display:none;">
+                <h2>RULES FOR BASEBALL</h2>
+                <p>☉Objective:
+                    The primary objective is to score runs by hitting the ball and running around bases to reach home plate.</p>
+                <p>☉Number of Players:
+                    Each team consists of 9 players. Teams switch between batting and fielding roles.</p>
+                <p>☉Innings:
+                    A baseball game is played over 9 innings. Each inning consists of each team having one turn to bat and one turn to field.</p>
+                <p>☉Scoring:
+                    A run is scored when a player successfully reaches home plate after touching all four bases. The team with the most runs at the end of the game wins.</p>
+                <p>☉Pitching:
+                    The game starts with the pitcher throwing the ball towards the batter. The pitcher aims to get the batter out by either striking them out, getting them to hit the ball into a catchable area, or making them hit a foul ball.</p>
+            </div>
+        
+            <!-- RUGBY RULES CONTENT -->
+            <div id="rugby-rules-content" style="display:none;">
+                <h2>RULES FOR RUGBY</h2>
+                <p>☉Objective:
+                    The main objective is to score more points than the opposing team by carrying or kicking the ball over the opponent’s goal line.</p>
+                <p>☉Number of Players:
+                    Rugby can be played in two main forms: Rugby Union (15 players per team) and Rugby League (13 players per team).</p>
+                <p>☉Match Duration:
+                    A standard rugby match is divided into two halves, each lasting 40 minutes, with a 10-minute halftime break.</p>
+                <p>☉Scoring:
+                    Points can be scored through tries, conversions, penalty goals, and drop goals. A try is worth 5 points, a conversion 2 points, and penalty/drop goals 3 points each.</p>
+                <p>☉Fouls and Penalties:
+                    Common fouls include offside, high tackles, and rucking. Penalties can result in a free kick, scrum, or lineout depending on the foul.</p>
+            </div>
+        
+            <!-- GOLF RULES CONTENT -->
+            <div id="golf-rules-content" style="display:none;">
+                <h2>RULES FOR GOLF</h2>
+                <p>☉Objective:
+                    The objective is to complete each hole in the fewest number of strokes. The player with the lowest total strokes at the end of the round wins.</p>
+                <p>☉Number of Players:
+                    Golf can be played individually or in teams. Each player takes turns hitting the ball from the tee to the hole.</p>
+                <p>☉Match Structure:
+                    A round of golf typically consists of 18 holes. Each hole has a par rating which indicates the number of strokes an expert golfer is expected to take.</p>
+                <p>☉Scoring:
+                    Scores are recorded as the number of strokes taken to complete each hole. The total score is the sum of strokes for all holes. Common formats include stroke play and match play.</p>
+                <p>☉Rules:
+                    Key rules include the use of clubs, ball placement, and penalty strokes for infractions such as hitting out of bounds or into hazards.</p>
+            </div>
+        </div>
+        <section class="info-boxes">
+    <!-- Existing Sections... -->
+
+    <!-- SWIMMING RULES -->
+    <div class="info-box">
+        <h3>Swimming</h3>
+        <img src="./swimming.avif" alt="Swimming Image" style="width:100%; height:auto;">
+        <p>"Swimming is a test of endurance and technique. It’s about mastering strokes, controlling breathing, and competing against the clock and fellow swimmers."</p>
+        <button class="read-more" data-popup="swimming-rules-content">Read More</button>
+    </div>
+
+    <!-- TABLE TENNIS RULES -->
+    
+            
+        
+       
+    <!-- TABLE TENNIS RULES -->
+    <div class="info-box">
+        <h3>Table Tennis</h3>
+        <img src="./table tennis.jpeg" alt="Table Tennis Image" style="width:100%; height:auto;">
+        <p>"Table Tennis is a fast-paced game of reflexes and precision. It’s about quick reactions, strategic placement, and outmaneuvering your opponent with skillful shots."</p>
+        <button class="read-more" data-popup="tabletennis-rules-content">Read More</button>
+    </div>
+
+    <!-- BADMINTON RULES -->
+    <div class="info-box">
+        <h3>Badminton</h3>
+        <img src="./badminton.jpeg" alt="Badminton Image" style="width:100%; height:auto;">
+        <p>"Badminton is a sport of agility and finesse. It’s about perfecting your serve, making precise shots, and playing with speed and accuracy to outplay your opponent."</p>
+        <button class="read-more" data-popup="badminton-rules-content">Read More</button>
+    </div>
+</section>
+
+<!-- Popup Container (Hidden by Default) -->
+<div id="popup-overlay" class="popup-overlay" style="display:none;">
+    <div id="popup-content" class="popup-content">
+        <span class="popup-close">&times;</span>
+        <div id="popup-body"></div>
+    </div>
+
+    <!-- Existing Popups... -->
+
+    <!-- SWIMMING RULES CONTENT -->
+    <div id="swimming-rules-content" style="display:none;">
+        <h2>RULES FOR SWIMMING</h2>
+        <p>☉Objective:
+            The objective is to complete a set distance in the fastest time possible. Races are held in various distances and strokes.</p>
+        <p>☉Strokes:
+            Common strokes include Freestyle, Backstroke, Breaststroke, and Butterfly. Each stroke has its own technique and rules.</p>
+        <p>☉Starts and Turns:
+            Races begin with a dive or start from the poolside. Swimmers must touch the wall at each end of the pool to change direction.</p>
+        <p>☉Disqualifications:
+            Disqualifications can occur for false starts, stroke violations, or improper turns. Each stroke has specific rules that must be followed.</p>
+        <p>☉Distances:
+            Typical race distances include 50m, 100m, 200m, 400m, 800m, and 1500m, with various events combining different strokes.</p>
+    </div>
+
+    <!-- TABLE TENNIS RULES CONTENT -->
+    <div id="tabletennis-rules-content" style="display:none;">
+        <h2>RULES FOR TABLE TENNIS</h2>
+        <p>☉Objective:
+            The goal is to score points by hitting the ball over the net and into the opponent’s side of the table in a way that they cannot return it.</p>
+        <p>☉Scoring:
+            A match is played in a best-of-five or best-of-seven sets format. A player scores a point when the opponent fails to return the ball correctly.</p>
+        <p>☉Serving:
+            The serve must be made from behind the end line and above the level of the playing surface. The ball must first bounce on the server’s side and then on the opponent’s side.</p>
+        <p>☉Rally:
+            Players alternate hitting the ball back and forth over the net. The ball must be returned before it bounces twice on one side of the table.</p>
+        <p>☉Faults:
+            Faults occur if the ball does not clear the net, lands outside the table, or is hit improperly. Players are allowed a limited number of serves before losing the point.</p>
+    </div>
+
+    <!-- BADMINTON RULES CONTENT -->
+    <div id="badminton-rules-content" style="display:none;">
+        <h2>RULES FOR BADMINTON</h2>
+        <p>☉Objective:
+            The primary objective is to score points by hitting the shuttlecock over the net and into the opponent’s court.</p>
+        <p>☉Scoring:
+            Matches are typically played in a best-of-three games format. Games are played to 21 points, with players needing to win by at least 2 points.</p>
+        <p>☉Serving:
+            The serve must be made underhand and the shuttlecock must be hit below the server’s waist. It must cross the net and land in the opponent’s service court.</p>
+        <p>☉Rally:
+            Players hit the shuttlecock back and forth over the net. The shuttlecock must not touch the ground or be hit twice by the same player.</p>
+        <p>☉Faults:
+            Faults occur if the shuttlecock lands outside the court, is hit into the net, or if players commit illegal actions like touching the net with their body or racket.</p>
+    </div>
+</div>
+    </div>
+    <div>
+<div id="types-content" class="tab-content">
+    <h1>Types of Sports</h1>
+    
+    <!-- Section for main categories like Team Sports, Individual Sports, etc. -->
+    <div class="sport-boxes">
+        <div class="sport-box" onclick="showSubpart('team-sports')">
+            <h3>Team Sports</h3>
+            <img src="./team sport.jpeg" alt="Team Sports Image">
+            <button class="read-more-button">View Sports</button>
+        </div>
+        <div class="sport-box" onclick="showSubpart('individual-sports')">
+            <h3>Individual Sports</h3>
+            <img src="./individual sport.webp" alt="Individual Sports Image">
+            <button class="read-more-button">View Sports</button>
+        </div>
+            <div class="sport-box" onclick="showSubpart('esports')">
+                <h3>Esports</h3>
+                <img src="./esports.jpeg" alt="Esports Image">
+                <button class="read-more-button">View Sports</button>
+            </div>
+            <div class="sport-box" onclick="showSubpart('extreme-sports')">
+                <h3>Extreme Sports</h3>
+                <img src="./extreme.jpeg" alt="Extreme Sports Image">
+                <button class="read-more-button">View Sports</button>
+            </div>
+        </div>
+        
+        
+      
+        
+
+    <!-- Subpart for Team Sports -->
+   <!-- Team Sports Section -->
+<!-- Team Sports Section -->
+<!-- Team Sports Section -->
+<div id="team-sports" class="subpart">
+    <h2>Team Sports</h2>
+    <div class="sport-detail">
+        <!-- Football -->
+        <div class="sport-item">
+            <img src="./football.webp" alt="Football Image">
+            <h3>Football</h3>
+            <button class="read-more-button" onclick="toggleContent('football-details')">Read More</button>
+            <div id="football-details" class="extended-content-custom">
+                <p>Football is a game played by two teams of 11 players, with the objective to score by getting the ball into the opposing goal.</p>
+                <img src="./messi.webp" alt="Famous Football Player" class="famous-personality">
+                <p><strong>Famous Personality:</strong> Lionel Messi - Known for his exceptional skills and multiple Ballon d'Or awards.</p>
+            </div>
+        </div>
+        <!-- Basketball -->
+        <div class="sport-item">
+            <img src="./basketball1.jpeg" alt="Basketball Image">
+            <h3>Basketball</h3>
+            <button class="read-more-button" onclick="toggleContent('basketball-details')">Read More</button>
+            <div id="basketball-details" class="extended-content-custom">
+                <p>Basketball is a sport played by two teams of five players on a rectangular court. The goal is to shoot the ball through the opponent's hoop.</p>
+                <img src="./lebron .jpeg" alt="Famous Basketball Player" class="famous-personality">
+                <p><strong>Famous Personality:</strong> LeBron James - Renowned for his versatility and four NBA championships.</p>
+            </div>
+        </div>
+        <!-- Volleyball -->
+        <div class="sport-item">
+            <img src="./volleyball.avif" alt="Volleyball Image">
+            <h3>Volleyball</h3>
+            <button class="read-more-button" onclick="toggleContent('volleyball-details')">Read More</button>
+            <div id="volleyball-details" class="extended-content-custom">
+                <p>Volleyball is played by two teams of six players each on a rectangular court divided by a net. The objective is to send the ball over the net and prevent the opponent from returning it.</p>
+                <img src="./karch kiraly.jpeg" alt="Famous Volleyball Player" class="famous-personality">
+                <p><strong>Famous Personality:</strong> Karch Kiraly - A legendary volleyball player known for his success in both indoor and beach volleyball.</p>
+            </div>
+        </div>
+        <!-- Hockey -->
+        <div class="sport-item">
+            <img src="./hockey.avif" alt="Hockey Image">
+            <h3>Hockey</h3>
+            <button class="read-more-button" onclick="toggleContent('hockey-details')">Read More</button>
+            <div id="hockey-details" class="extended-content-custom">
+                <p>Hockey is a game played on ice or field, where teams aim to score goals by hitting a puck or ball into the opponent's net.</p>
+                <img src="./wayne .jpeg" alt="Famous Hockey Player" class="famous-personality">
+                <p><strong>Famous Personality:</strong> Wayne Gretzky - Often referred to as "The Great One," Gretzky holds numerous records in the NHL.</p>
+            </div>
+        </div>
+        <!-- Rugby -->
+        <div class="sport-item">
+            <img src="./rugby.png" alt="Rugby Image">
+            <h3>Rugby</h3>
+            <button class="read-more-button" onclick="toggleContent('rugby-details')">Read More</button>
+            <div id="rugby-details" class="extended-content-custom">
+                <p>Rugby is a team sport played with an oval-shaped ball, where teams aim to score points by carrying, passing, or kicking the ball to the opposing team's goal area.</p>
+                <img src="./richie.jpeg" alt="Famous Rugby Player" class="famous-personality">
+                <p><strong>Famous Personality:</strong> Richie McCaw - Celebrated for his leadership and success with the New Zealand All Blacks.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Individual Sports Section -->
+<div id="individual-sports" class="subpart">
+    <h2>Individual Sports</h2>
+    <div class="sport-detail">
+        <!-- Tennis -->
+        <div class="sport-item">
+            <img src="./tennis.png" alt="Tennis Image">
+            <h3>Tennis</h3>
+            <button class="read-more-button" onclick="toggleContent('tennis-details')">Read More</button>
+            <div id="tennis-details" class="extended-content-custom">
+                <p>Tennis is a game played between two players (singles) or two teams of two players (doubles), where players use a racquet to hit the ball over a net.</p>
+                <img src="./roger.webp" alt="Famous Tennis Player" class="famous-personality">
+                <p><strong>Famous Personality:</strong> Roger Federer - Known for his elegance on the court and numerous Grand Slam titles.</p>
+            </div>
+        </div>
+        <!-- Swimming -->
+        <div class="sport-item">
+            <img src="./swimming.avif" alt="Swimming Image">
+            <h3>Swimming</h3>
+            <button class="read-more-button" onclick="toggleContent('swimming-details')">Read More</button>
+            <div id="swimming-details" class="extended-content-custom">
+                <p>Swimming is an individual or team racing sport that requires the use of one's entire body to move through water.</p>
+                <img src="./pjelps.jpg" alt="Famous Swimmer" class="famous-personality">
+                <p><strong>Famous Personality:</strong> Michael Phelps - The most decorated Olympian of all time with 23 gold medals.</p>
+            </div>
+        </div>
+        <!-- Boxing -->
+        <div class="sport-item">
+            <img src="./boxing.avif" alt="Boxing Image">
+            <h3>Boxing</h3>
+            <button class="read-more-button" onclick="toggleContent('boxing-details')">Read More</button>
+            <div id="boxing-details" class="extended-content-custom">
+                <p>Boxing is a combat sport where two fighters use gloves to strike each other with the aim of knocking out their opponent or scoring points.</p>
+                <img src="./ali.webp" alt="Famous Boxer" class="famous-personality">
+                <p><strong>Famous Personality:</strong> Muhammad Ali - Renowned for his skill, charisma, and achievements in the ring.</p>
+            </div>
+        </div>
+        <!-- Gymnastics -->
+        <div class="sport-item">
+            <img src="./gymnastics.webp" alt="Gymnastics Image">
+            <h3>Gymnastics</h3>
+            <button class="read-more-button" onclick="toggleContent('gymnastics-details')">Read More</button>
+            <div id="gymnastics-details" class="extended-content-custom">
+                <p>Gymnastics is a sport that involves performances on different apparatuses or routines, focusing on strength, flexibility, and balance.</p>
+                <img src="./biles.jpeg" alt="Famous Gymnast" class="famous-personality">
+                <p><strong>Famous Personality:</strong> Simone Biles - Known for her extraordinary skills and numerous Olympic medals.</p>
+            </div>
+        </div>
+        <!-- Track and Field -->
+        <div class="sport-item">
+            <img src="./track and field.png" alt="Track and Field Image">
+            <h3>Track and Field</h3>
+            <button class="read-more-button" onclick="toggleContent('track-field-details')">Read More</button>
+            <div id="track-field-details" class="extended-content-custom">
+                <p>Track and field is a sport that includes various running, jumping, and throwing events.</p>
+                <img src="./usain-bolt.jpeg" alt="Famous Track and Field Athlete" class="famous-personality">
+                <p><strong>Famous Personality:</strong> Usain Bolt - Renowned for his record-breaking sprinting performances.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Esports Section -->
+<div id="esports" class="subpart">
+    <h2>Esports</h2>
+    <div class="sport-detail">
+        <!-- Dota 2 -->
+        <div class="sport-item">
+            <img src="./dota2.jpeg" alt="Dota 2 Image">
+            <h3>Dota 2</h3>
+            <button class="read-more-button" onclick="toggleContent('dota2-details')">Read More</button>
+            <div id="dota2-details" class="extended-content-custom">
+                <p>Dota 2 is a multiplayer online battle arena (MOBA) game where two teams of five players each compete to destroy the opposing team's base.</p>
+                <img src="./johan.jpeg" alt="Famous Dota 2 Player" class="famous-personality">
+                <p><strong>Famous Personality:</strong> Johan "N0tail" Sundstein - One of the most successful Dota 2 players with multiple International titles.</p>
+            </div>
+        </div>
+        <!-- League of Legends -->
+        <div class="sport-item">
+            <img src="./league .avif" alt="League of Legends Image">
+            <h3>League of Legends</h3>
+            <button class="read-more-button" onclick="toggleContent('lol-details')">Read More</button>
+            <div id="lol-details" class="extended-content-custom">
+                <p>League of Legends is a multiplayer online battle arena (MOBA) game where two teams of five players each battle to destroy the opponent's Nexus.</p>
+                <img src="./lee.jpg" alt="Famous League of Legends Player" class="famous-personality">
+                <p><strong>Famous Personality:</strong> Lee "Faker" Sang-hyeok - Known for his exceptional skills and multiple World Championship titles.</p>
+            </div>
+        </div>
+        <!-- Counter-Strike -->
+        <div class="sport-item">
+            <img src="./counter.webp" alt="Counter-Strike Image">
+            <h3>Counter-Strike</h3>
+            <button class="read-more-button" onclick="toggleContent('cs-details')">Read More</button>
+            <div id="cs-details" class="extended-content-custom">
+                <p>Counter-Strike is a tactical first-person shooter where two teams, terrorists and counter-terrorists, compete to complete objectives or eliminate the opposing team.</p>
+                <img src="./kennys.jpeg" alt="Famous Counter-Strike Player" class="famous-personality">
+                <p><strong>Famous Personality:</strong> KENNYS - Renowned for his sharpshooting skills and influence in the Counter-Strike scene.</p>
+            </div>
+        </div>
+        <!-- Overwatch -->
+        <div class="sport-item">
+            <img src="./overwatch.jpeg" alt="Overwatch Image">
+            <h3>Overwatch</h3>
+            <button class="read-more-button" onclick="toggleContent('overwatch-details')">Read More</button>
+            <div id="overwatch-details" class="extended-content-custom">
+                <p>Overwatch is a team-based first-person shooter with a diverse cast of characters, each with unique abilities, competing in various game modes.</p>
+                <img src="./jjonak.jpeg" alt="Famous Overwatch Player" class="famous-personality">
+                <p><strong>Famous Personality:</strong> JJoNak - Known for his exceptional performance and success in the Overwatch League.</p>
+            </div>
+        </div>
+        <!-- Hearthstone -->
+        <div class="sport-item">
+            <img src="./hearthstone.jpeg" alt="Hearthstone Image">
+            <h3>Hearthstone</h3>
+            <button class="read-more-button" onclick="toggleContent('hearthstone-details')">Read More</button>
+            <div id="hearthstone-details" class="extended-content-custom">
+                <p>Hearthstone is a digital collectible card game where players build decks and battle against each other using various strategies and tactics.</p>
+                <img src="./firebat.jpg" alt="Famous Hearthstone Player" class="famous-personality">
+                <p><strong>Famous Personality:</strong> Firebat - Known for his impressive victories and influence in the Hearthstone community.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="extreme-sports" class="subpart">
+    <h2>Extreme Sports</h2>
+    <div class="sport-detail">
+        <!-- Skydiving -->
+        <div class="sport-item">
+            <img src="./skydiving.jpeg" alt="Skydiving Image">
+            <h3>Skydiving</h3>
+            <button class="read-more-button" onclick="toggleContent('skydiving-details')">Read More</button>
+            <div id="skydiving-details" class="extended-content-custom">
+                <p>Skydiving is a high-adrenaline sport where participants jump from an aircraft and perform acrobatic maneuvers before deploying a parachute to descend safely to the ground.</p>
+                <img src="./fleix.jpeg" alt="Famous Skydiver" class="famous-personality">
+                <p><strong>Famous Personality:</strong> Felix Baumgartner - Famous for his world record jump from the stratosphere.</p>
+            </div>
+        </div>
+        <!-- BASE Jumping -->
+        <div class="sport-item">
+            <img src="./base jumping.jpeg" alt="BASE Jumping Image">
+            <h3>BASE Jumping</h3>
+            <button class="read-more-button" onclick="toggleContent('basejumping-details')">Read More</button>
+            <div id="basejumping-details" class="extended-content-custom">
+                <p>BASE Jumping involves jumping from fixed objects such as buildings, antennae, spans, and cliffs, relying on a parachute for a controlled descent.</p>
+                <img src="./carl.jpg" alt="Famous BASE Jumper" class="famous-personality">
+                <p><strong>Famous Personality:</strong> Carl Boenish - Known as the father of modern BASE jumping.</p>
+            </div>
+        </div>
+        <!-- BMX Freestyle -->
+        <div class="sport-item">
+            <img src="./bmx freestyle.webp" alt="BMX Image">
+            <h3>BMX Freestyle</h3>
+            <button class="read-more-button" onclick="toggleContent('bmx-details')">Read More</button>
+            <div id="bmx-details" class="extended-content-custom">
+                <p>BMX Freestyle involves performing stunts and tricks using specialized bicycles, often on ramps or urban environments.</p>
+                <img src="./dave.jpeg    " alt="Famous BMX Rider" class="famous-personality">
+                <p><strong>Famous Personality:</strong> Dave Mirra - One of the most decorated X Games athletes in BMX history.</p>
+            </div>
+        </div>
+        <!-- Wingsuit Flying -->
+        <div class="sport-item">
+            <img src="./wingsuit.jpeg" alt="Wingsuit Flying Image">
+            <h3>Wingsuit Flying</h3>
+            <button class="read-more-button" onclick="toggleContent('wingsuit-details')">Read More</button>
+            <div id="wingsuit-details" class="extended-content-custom">
+                <p>Wingsuit Flying is an extreme sport where participants glide through the air using a specialized jumpsuit that adds surface area to the body for increased lift.</p>
+                <img src="./jeb.webp" alt="Famous Wingsuit Flyer" class="famous-personality">
+                <p><strong>Famous Personality:</strong> Jeb Corliss - Renowned for his daring wingsuit flights.</p>
+            </div>
+        </div>
+        <!-- Rock Climbing -->
+        <div class="sport-item">
+            <img src="./rock climbing.webp" alt="Rock Climbing Image">
+            <h3>Rock Climbing</h3>
+            <button class="read-more-button" onclick="toggleContent('climbing-details')">Read More</button>
+            <div id="climbing-details" class="extended-content-custom">
+                <p>Rock Climbing involves ascending natural rock formations or artificial rock walls using various climbing techniques and safety equipment.</p>
+                <img src="./alex.jpeg" alt="Famous Rock Climber" class="famous-personality">
+                <p><strong>Famous Personality:</strong> Alex Honnold - Known for his free solo climb of El Capitan.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    </div>
+ <!-- Sports Quota Section -->
+ <div id="sports-quota-benefits-content" class="tab-content">
+    <h1 style="text-align: center;">Sports Quota Benefits</h1>
+    <div class="tabs" style="text-align: center;">
+        <button class="tab-button" onclick="showSubContent('scholarships')">Scholarships</button>
+        <button class="tab-button" onclick="showSubContent('employment')">Employment Reservations</button>
+        <button class="tab-button" onclick="showSubContent('training')">Training Facilities</button>
+        <button class="tab-button" onclick="showSubContent('medical')">Medical Assistance</button>
+        <button class="tab-button" onclick="showSubContent('travel')">Travel Allowances</button>
+        <button class="tab-button" onclick="showSubContent('coaching')">Coaching Support</button>
+        <button class="tab-button" onclick="showSubContent('recognition')">Recognition Awards</button>
+        <!-- Add more buttons as needed -->
+    </div>
+
+    <!-- Sub-content for Scholarships -->
+<div id="scholarships" class="sub-tab-content" style="display: none;">
+    <h2>Scholarships</h2>
+    <p>The Government of India, through the Ministry of Youth Affairs and Sports, provides a range of scholarships to support athletes in their academic and sporting pursuits. These scholarships are aimed at encouraging young athletes to continue their education while pursuing excellence in sports. Below are the detailed benefits provided under various government scholarship schemes:</p>
+    <ul>
+        <li><strong>Full or Partial Tuition Fee Waivers:</strong> Athletes who excel at the national or international level are eligible for full or partial tuition fee waivers in recognized institutions across the country. This benefit ensures that athletes do not have to bear the financial burden of their education while focusing on their training and competitions.</li>
+        
+        <li><strong>Monthly Stipends for Living and Educational Expenses:</strong> Selected athletes receive a monthly stipend to cover living costs, books, study materials, and other educational expenses. This stipend ensures that athletes have access to all necessary resources without financial stress, allowing them to balance both academic and sporting commitments effectively.</li>
+        
+        <li><strong>Special Allowances for Sports Equipment and Gear:</strong> In addition to academic support, athletes are provided with financial assistance to purchase specialized sports equipment, uniforms, and other related gear. This support is crucial for ensuring that athletes have access to high-quality training resources and can compete at their best in national and international events.</li>
+        
+        <li><strong>Performance-Based Scholarships:</strong> Athletes who perform exceptionally well in national or international tournaments are eligible for performance-based scholarships. These scholarships are awarded to recognize their achievements and encourage them to continue excelling in their sport. Athletes may also receive bonuses for winning medals at prestigious events like the Asian Games, Commonwealth Games, and the Olympics.</li>
+        
+        <li><strong>Scholarship Opportunities for Higher Education:</strong> Athletes aspiring to pursue higher education are eligible for various scholarship programs, including those under the National Sports Scholarship Program. This program is designed to assist athletes in enrolling in undergraduate, postgraduate, and professional courses in recognized universities and institutions, ensuring they receive both academic and sporting support.</li>
+        
+        <li><strong>Scholarships for Underprivileged Athletes:</strong> Special provisions are made for athletes from economically disadvantaged backgrounds to ensure that they have equal access to educational and sporting opportunities. These scholarships help cover not only tuition fees but also accommodation, food, and travel costs, providing a comprehensive support package.</li>
+    </ul>
+    <p>In addition to the scholarships provided by the central government, several state governments and private organizations also offer similar schemes to support athletes in their academic and sporting endeavors. Athletes are encouraged to apply for multiple programs to maximize the benefits available to them.</p>
+    <p>For detailed guidelines and application procedures, please visit the official website of the <a href="https://yas.nic.in/" target="_blank">Ministry of Youth Affairs and Sports</a>.</p>
+</div>
+
+
+    <!-- Sub-content for Employment Reservations -->
+    <!-- Sub-content for Employment Reservations -->
+<div id="employment" class="sub-tab-content" style="display: none;">
+    <h2>Employment Reservations</h2>
+    <p>The Government of India offers employment reservations to athletes through various schemes and policies aimed at providing stable career opportunities in both public and private sectors. These reservations are designed to support athletes who have represented the country at state, national, and international levels, ensuring that they are not only recognized for their contributions to sports but also have access to meaningful employment. Below are the details of employment reservations provided to athletes:</p>
+    
+    <ul>
+        <li><strong>Reserved Positions in Government Jobs:</strong> Athletes who have participated in national and international competitions are eligible for reserved positions in various government departments. The central government, as well as many state governments, set aside a specific percentage of job vacancies under the sports quota. These positions are available in sectors such as public administration, defense, police services, and public sector undertakings (PSUs). Athletes are given priority during the recruitment process, ensuring that their sporting achievements are recognized and rewarded with stable employment opportunities.</li>
+        
+        <li><strong>Relaxation in Eligibility Criteria:</strong> To facilitate easier access to government jobs, athletes are often granted relaxation in age limits, educational qualifications, and physical standards during recruitment. This enables athletes to apply for jobs that they may otherwise not qualify for due to their sports-related commitments. For example, certain posts in the defense and police forces offer age relaxation and physical requirement exemptions for eligible athletes.</li>
+        
+        <li><strong>Priority in Recruitment Drives:</strong> During recruitment drives for public sector jobs, athletes are given priority under the sports quota. Special interviews and recruitment tests are conducted for athletes, ensuring that their sporting accomplishments are taken into account when assessing their qualifications for the job. Athletes who have represented the country in events like the Olympics, Asian Games, or Commonwealth Games often receive direct recruitment offers for prestigious positions in government organizations.</li>
+        
+        <li><strong>Employment in Public Sector Undertakings (PSUs):</strong> Many PSUs, such as Indian Railways, ONGC, SAIL, and others, reserve positions for athletes under the sports quota. These organizations offer attractive career paths and provide opportunities for athletes to continue participating in sports while being employed. Athletes are often recruited as sports officers, coaches, or team managers within these organizations, allowing them to contribute to the development of sports in India while pursuing a professional career.</li>
+        
+        <li><strong>Job Security and Career Advancement:</strong> Athletes employed under the sports quota enjoy job security, which is crucial for those transitioning from a career in sports to a professional career. Many government departments and PSUs also provide opportunities for career advancement through promotions, based on both professional performance and continued participation in sports. This ensures that athletes can grow within their chosen fields while maintaining their association with sports.</li>
+        
+        <li><strong>Special Provisions for Armed Forces and Police Services:</strong> The Indian Armed Forces and police departments have specific provisions for recruiting athletes under the sports quota. Athletes are often recruited as officers in the army, navy, air force, and paramilitary forces, where they receive both military training and the opportunity to represent the country in national and international sporting events. Similarly, police forces recruit athletes for roles in physical training, sports management, and competition teams.</li>
+    </ul>
+
+    <p>In addition to these benefits, athletes employed under the sports quota may also receive additional support, such as flexible working hours, leaves of absence for training and competitions, and financial incentives for outstanding performance in sports. These provisions ensure that athletes can continue to train and compete while maintaining their professional careers.</p>
+
+    <p>For detailed information about the recruitment process, job eligibility criteria, and available positions under the sports quota, visit the official website of the <a href="https://yas.nic.in/" target="_blank">Ministry of Youth Affairs and Sports</a>.</p>
+</div>
+
+
+ 
+    <!-- Sub-content for Training Facilities -->
+<div id="training" class="sub-tab-content" style="display: none;">
+    <h2>Training Facilities</h2>
+    <p>The Government of India, through various sports authorities and organizations, provides world-class training facilities to support the development of athletes across different sports disciplines. These facilities are designed to ensure that athletes receive the best training and preparation, enabling them to compete at national and international levels. Below are the detailed training facilities and support provided to athletes:</p>
+
+    <ul>
+        <li><strong>Access to National and Regional Sports Complexes:</strong> Athletes are provided access to state-of-the-art sports complexes across the country, including facilities like the National Institute of Sports (NIS) in Patiala, the Sports Authority of India (SAI) centers, and regional sports academies. These complexes are equipped with advanced infrastructure, including high-tech sports equipment, training grounds, and specialized courts or arenas for various sports. Athletes can utilize these facilities for regular training, conditioning, and preparation for competitions.</li>
+
+        <li><strong>Specialized Training Programs:</strong> To ensure that athletes receive focused and specialized coaching, the government offers tailored training programs designed to meet the specific needs of athletes in different sports. These programs are developed by experienced coaches and sports scientists, with an emphasis on modern training techniques, nutrition, and fitness regimens. Athletes are given access to sport-specific training routines that help them improve their skills, strength, and endurance.</li>
+
+        <li><strong>Use of Cutting-Edge Technology for Performance Enhancement:</strong> Athletes training at national centers have access to cutting-edge technology, including video analysis, biomechanical assessments, and sports performance monitoring systems. These technologies help coaches analyze an athlete’s technique, identify areas for improvement, and track performance progress over time. The use of technology plays a crucial role in improving athletes' performance and preventing injuries.</li>
+
+        <li><strong>International Exposure and Training Camps:</strong> The government organizes international exposure trips and training camps to give athletes the opportunity to train abroad with foreign coaches and compete against international teams. This exposure to different training environments and coaching techniques helps athletes broaden their experience and adapt to global competition standards. Additionally, athletes who qualify for international competitions are sent to train in countries known for their excellence in specific sports, allowing them to receive top-tier training before major events like the Olympics and World Championships.</li>
+
+        <li><strong>Support from High-Performance Centers:</strong> High-performance centers are established across the country to provide specialized support for elite athletes. These centers focus on strength and conditioning, recovery and rehabilitation, and mental conditioning. Athletes working at these centers benefit from a holistic approach to training that integrates physical, mental, and emotional development to prepare them for high-pressure competitions.</li>
+
+        <li><strong>Expert Coaching and Mentorship:</strong> Athletes are trained by experienced coaches and mentors who have a proven track record of success in their respective fields. The government employs national and international coaches with expertise in different sports disciplines, ensuring that athletes receive the highest level of guidance and training. Coaching support includes one-on-one sessions, group training, and mentorship programs aimed at honing the skills of athletes and preparing them for major tournaments.</li>
+
+        <li><strong>Sports Science and Nutrition Support:</strong> Athletes are provided with comprehensive sports science support, which includes sports medicine, physiotherapy, nutrition counseling, and psychological support. Sports scientists work closely with athletes to ensure that they follow proper training schedules, maintain optimal fitness levels, and recover effectively from injuries. Nutritional experts help athletes design meal plans that meet their specific energy and dietary requirements, enhancing performance and overall health.</li>
+
+        <li><strong>Strength and Conditioning Programs:</strong> In addition to sport-specific training, athletes undergo strength and conditioning programs to build endurance, agility, and overall fitness. These programs are designed to enhance physical strength and improve flexibility, reducing the risk of injury during intense competition. Strength and conditioning experts closely monitor athletes’ progress and adjust training plans based on individual needs.</li>
+    </ul>
+
+    <p>These training facilities and programs ensure that athletes are well-equipped to compete at the highest levels. They also provide a platform for young and emerging athletes to nurture their talents and pursue a career in sports. The government's investment in training facilities reflects its commitment to promoting sports excellence in India.</p>
+    
+    <p>For more information on government-supported training facilities and programs, please visit the official website of the <a href="https://yas.nic.in/" target="_blank">Ministry of Youth Affairs and Sports</a>.</p>
+</div>
+
+
+   <!-- Sub-content for Medical Assistance -->
+<div id="medical" class="sub-tab-content" style="display: none;">
+    <h2>Medical Assistance</h2>
+    <p>The Government of India, through the Ministry of Youth Affairs and Sports and associated sports bodies, provides extensive medical support to athletes to ensure their health and well-being. Medical assistance is a critical component of the government’s commitment to helping athletes achieve peak performance while preventing injuries and managing rehabilitation. Below are the details of the medical assistance provided to athletes:</p>
+
+    <ul>
+        <li><strong>Comprehensive Medical Check-ups:</strong> Athletes are entitled to regular and comprehensive medical check-ups to monitor their health status. These check-ups include cardiovascular, respiratory, and musculoskeletal assessments to ensure that athletes are in optimal health before, during, and after competitions. Any potential health concerns are identified early, allowing for preventive measures to be taken.</li>
+
+        <li><strong>Free Treatment for Injuries and Illnesses:</strong> In case of injuries sustained during training or competition, athletes receive free medical treatment at government-recognized sports medical centers. These centers are equipped with specialists in sports medicine, orthopedic surgeons, and physiotherapists to ensure that athletes recover quickly and return to competition. Additionally, athletes receive treatment for any illnesses that may hinder their performance.</li>
+
+        <li><strong>Access to Physiotherapy and Rehabilitation Services:</strong> Athletes recovering from injuries are provided with comprehensive rehabilitation services. This includes physiotherapy, strength and conditioning programs, and guided recovery sessions designed to restore mobility, flexibility, and strength. Rehabilitation is tailored to the needs of individual athletes to ensure a safe and effective return to their sport. Athletes have access to advanced rehabilitation equipment and experienced physiotherapists to assist with their recovery.</li>
+
+        <li><strong>Sports Science and Injury Prevention Programs:</strong> To prevent injuries and ensure long-term athlete health, the government offers sports science support, including injury prevention programs. These programs involve movement analysis, strength training, and flexibility exercises designed to reduce the risk of injuries. Sports scientists and medical professionals work closely with athletes to identify vulnerabilities and implement corrective measures to prevent future injuries.</li>
+
+        <li><strong>Emergency Medical Care During Competitions:</strong> Athletes competing at national and international events are provided with on-site emergency medical care. Specialized medical teams are present at competitions to manage any medical emergencies that may arise, such as fractures, sprains, or concussions. This ensures that athletes receive immediate treatment in case of injuries and can be stabilized before further medical interventions if needed.</li>
+
+        <li><strong>Psychological Support and Mental Health Services:</strong> Recognizing the importance of mental well-being in athletic performance, the government provides psychological support and mental health services to athletes. Sports psychologists are available to help athletes manage stress, anxiety, and pressure associated with competitive sports. Mental health programs include counseling sessions, coping strategies for dealing with setbacks, and mindfulness training to maintain mental resilience.</li>
+
+        <li><strong>Nutritional Counseling and Dietary Support:</strong> Athletes are provided with expert nutritional counseling to ensure they maintain an optimal diet that supports their health and performance. Nutritionists and dietitians work with athletes to create customized meal plans that meet their energy needs, taking into account their training regimen, competition schedule, and specific health requirements. Special dietary supplements and hydration plans are also provided to support recovery and performance enhancement.</li>
+
+        <li><strong>Long-term Health Monitoring for Elite Athletes:</strong> Elite athletes representing India at the international level are offered long-term health monitoring services. This involves regular tracking of their physical health, injury history, and overall fitness through medical records and performance data. The goal is to ensure that athletes maintain good health throughout their careers and receive immediate medical attention when needed. This long-term monitoring also helps in addressing chronic conditions or recurring injuries that may affect performance.</li>
+    </ul>
+
+    <p>The medical assistance provided by the government ensures that athletes are not only supported during injuries or illness but also receive preventive care and long-term health monitoring. The focus on both physical and mental health ensures that athletes can perform at their best while maintaining overall well-being.</p>
+
+    <p>For more information on the medical assistance available to athletes, visit the official website of the <a href="https://yas.nic.in/" target="_blank">Ministry of Youth Affairs and Sports</a>.</p>
+</div>
+
+
+   <!-- Sub-content for Travel Allowances -->
+<div id="travel" class="sub-tab-content" style="display: none;">
+    <h2>Travel Allowances</h2>
+    <p>The Government of India provides extensive financial support for athletes through travel allowances, ensuring that they can participate in national and international competitions without bearing the burden of travel costs. This initiative is designed to reduce the financial strain on athletes and to promote greater participation in competitive events. Below are the detailed travel allowance benefits offered to athletes:</p>
+
+    <ul>
+        <li><strong>Reimbursement for Travel Expenses:</strong> Athletes participating in recognized national and international sporting events are eligible for full or partial reimbursement of their travel expenses. This includes airfare, train fares, or other modes of transportation used to reach competition venues. For international events, athletes are provided with economy-class flight tickets, while domestic travel within India is typically covered through train or air travel reimbursements. The government ensures that athletes can focus on their performance without worrying about travel costs.</li>
+
+        <li><strong>Subsidies for Accommodation and Meals:</strong> In addition to travel expenses, athletes are provided with subsidies for accommodation and meals during competitions. These subsidies ensure that athletes stay in safe and comfortable accommodations that are conducive to their training and performance. The government often partners with local hotels or sports facilities to provide athletes with discounted or fully covered accommodation. Similarly, meal allowances are provided to cover the cost of nutritious meals during the competition period, ensuring that athletes maintain proper nutrition while competing.</li>
+
+        <li><strong>Allowances for Support Staff and Coaches:</strong> The government also provides travel allowances for the support staff, including coaches, physiotherapists, and team doctors, who accompany athletes to competitions. This ensures that athletes have access to the necessary coaching and medical support throughout the duration of the event. The travel expenses of these essential personnel are fully covered, allowing them to focus on helping athletes achieve peak performance during competitions.</li>
+
+        <li><strong>Advance Payments for Major Competitions:</strong> For major international events such as the Olympics, World Championships, and Asian Games, athletes are often provided with travel allowances and subsidies in advance. This ensures that they have the necessary funds to make travel arrangements well ahead of time. The advance payment system is designed to reduce the logistical stress associated with last-minute travel planning, allowing athletes to focus on their training and preparation for the event.</li>
+
+        <li><strong>Government-Sponsored Travel for Training Camps:</strong> Athletes who participate in government-sponsored training camps held outside their home states or abroad are also eligible for travel allowances. These training camps are crucial for preparing athletes for major events, and the government covers the cost of travel to and from the camp locations. This allows athletes to attend specialized training programs without incurring additional travel costs.</li>
+
+        <li><strong>Travel for Selection Trials and National Championships:</strong> Athletes selected to participate in national selection trials or national championships are eligible for travel reimbursements. These events are critical for athletes seeking to qualify for international competitions or national teams, and the government ensures that financial constraints do not hinder their participation. Reimbursements are typically processed upon submission of travel documents and receipts, ensuring transparency and timely payment.</li>
+
+        <li><strong>Special Travel Allowances for Paralympic Athletes:</strong> Paralympic athletes are provided with additional support for travel to ensure that they have the necessary arrangements for mobility and accessibility during their journeys. This includes specialized transport options, such as wheelchair-accessible vehicles, and assistance during travel. The government recognizes the unique challenges faced by Paralympic athletes and provides them with tailored travel allowances to ensure their safe and comfortable participation in events.</li>
+
+        <li><strong>Family Travel Support for Exceptional Athletes:</strong> In certain cases, exceptional athletes who achieve significant success at international events may be granted travel support for a family member to accompany them to major competitions. This is usually reserved for top-tier athletes competing in high-profile events such as the Olympics, where family support can play a crucial role in mental and emotional well-being. The travel expenses of one family member may be covered as a part of this initiative, highlighting the government’s commitment to supporting athletes holistically.</li>
+    </ul>
+
+    <p>The travel allowances provided by the government play a key role in reducing financial barriers for athletes, ensuring they can focus on their performance and participation in competitive events. These allowances cover a wide range of travel-related expenses, from transportation and accommodation to meal subsidies and support for coaches, making it easier for athletes to pursue their sporting careers.</p>
+
+    <p>For more details on travel allowances and other financial support available to athletes, please visit the official website of the <a href="https://yas.nic.in/" target="_blank">Ministry of Youth Affairs and Sports</a>.</p>
+</div>
+
+
+   <!-- Sub-content for Coaching Support -->
+<div id="coaching" class="sub-tab-content" style="display: none;">
+    <h2>Coaching Support</h2>
+    <p>The Government of India places a strong emphasis on providing athletes with access to top-quality coaching to help them excel in their respective sports. Coaching support is integral to the development of athletes at every level, from grassroots to elite performance. Below are the details of the coaching support services offered to athletes:</p>
+
+    <ul>
+        <li><strong>Access to National and International Coaches:</strong> Athletes have the opportunity to train under the guidance of both national and internationally renowned coaches. The government collaborates with sports federations and organizations to recruit expert coaches with specialized knowledge in various sports. These coaches bring cutting-edge techniques and training methodologies to help athletes compete at the highest level. International coaches are often brought in for elite training programs and competitions, ensuring that Indian athletes are on par with global standards.</li>
+
+        <li><strong>One-on-One Coaching Sessions:</strong> To ensure personalized attention, athletes are provided with opportunities for one-on-one coaching sessions. This personalized coaching allows athletes to work closely with their coaches to develop individual skills, refine techniques, and address specific areas for improvement. One-on-one coaching is especially beneficial for elite athletes who require tailored training programs to optimize their performance. Coaches analyze athletes’ strengths and weaknesses and design customized strategies to enhance their competitive edge.</li>
+
+        <li><strong>Group Coaching and Team Training:</strong> For team sports and group events, athletes receive structured coaching in group settings. This includes tactical and technical training, as well as team-building exercises to improve coordination and cohesion among team members. Coaches focus on creating a collaborative environment where athletes can learn to work together effectively, strategize for competitions, and build a winning mindset. Group coaching is also used to simulate real competition scenarios, preparing athletes for team dynamics during events.</li>
+
+        <li><strong>Tailored Training Programs:</strong> Each athlete's training plan is tailored to their specific needs, taking into account factors such as their sport, age, fitness level, and performance goals. The government ensures that athletes receive specialized training that is suited to their current competitive level and future aspirations. Coaches work with sports scientists and medical professionals to develop individualized training regimens that enhance physical conditioning, technique, endurance, and mental focus. These programs are regularly adjusted based on the athlete’s progress and upcoming competitions.</li>
+
+        <li><strong>Support for Coaching Certifications and Training of Coaches:</strong> In addition to providing coaching for athletes, the government also invests in the development of coaches by offering certifications, workshops, and training programs. This helps improve the overall standard of coaching in India, ensuring that athletes at all levels receive high-quality instruction. The government partners with national and international sports bodies to provide certification courses that align with global coaching standards. Aspiring coaches are given opportunities to learn from experienced mentors and gain practical knowledge in the field of sports coaching.</li>
+
+        <li><strong>High-Performance Coaching for Elite Athletes:</strong> Elite athletes, particularly those representing India in international competitions such as the Olympics, Commonwealth Games, and World Championships, receive high-performance coaching. These programs are designed to optimize every aspect of the athlete’s performance, from technique refinement to mental conditioning. High-performance coaching also includes sports analytics, performance tracking, and biomechanical assessments to fine-tune every element of an athlete’s game. Coaches work closely with sports psychologists and nutritionists to ensure athletes are physically and mentally prepared for high-pressure competitions.</li>
+
+        <li><strong>Workshops and Camps for Skill Development:</strong> Throughout the year, the government organizes workshops and training camps for athletes across various sports disciplines. These workshops provide athletes with the opportunity to work with expert coaches, exchange knowledge with their peers, and focus on skill development. Training camps are often held before major competitions, allowing athletes to train in a focused and competitive environment. These camps are designed to simulate high-level competition conditions and prepare athletes for the challenges of national and international events.</li>
+
+        <li><strong>Use of Technology in Coaching:</strong> The government has introduced advanced technological tools to enhance coaching effectiveness. This includes the use of video analysis software, performance tracking systems, and data analytics to assess athletes’ performance during training and competitions. Coaches use this data to provide feedback on technique, strategy, and fitness, enabling athletes to make informed improvements. Video reviews and biomechanical analysis allow athletes to see their movements in slow motion and make corrections where necessary. This use of technology is becoming an integral part of modern coaching strategies, helping athletes stay ahead in competitive sports.</li>
+
+        <li><strong>Mentorship and Career Guidance:</strong> In addition to coaching, athletes receive mentorship from senior coaches and experienced athletes who provide career guidance and emotional support. This mentorship is crucial for helping young athletes navigate the challenges of competitive sports, including handling pressure, overcoming setbacks, and planning for long-term success. Coaches and mentors work closely with athletes to develop a growth mindset and build resilience in the face of competition stress. This holistic support system ensures that athletes are well-prepared both on and off the field.</li>
+    </ul>
+
+    <p>Coaching support provided by the government is designed to help athletes excel in their respective sports by giving them access to expert guidance, personalized training, and state-of-the-art coaching methods. These services are crucial for developing both individual athletes and teams, ensuring that they can compete at the national and international levels.</p>
+
+    <p>For more information on coaching support and other athlete services, visit the official website of the <a href="https://yas.nic.in/" target="_blank">Ministry of Youth Affairs and Sports</a>.</p>
+</div>
+
+
+    <!-- Sub-content for Recognition Awards -->
+<div id="recognition" class="sub-tab-content" style="display: none;">
+    <h2>Recognition Awards</h2>
+    <p>The Government of India is committed to honoring athletes who excel in sports, recognizing their contributions to the nation’s sporting achievements. Recognition awards are given to athletes at various levels for their outstanding performances in national and international events. These awards serve as an acknowledgment of the athletes' hard work, dedication, and success, motivating them to continue striving for excellence. Below are the details of the recognition awards and honors provided to athletes:</p>
+
+    <ul>
+        <li><strong>National Sports Awards:</strong> The Government of India bestows several prestigious national sports awards every year to athletes who have demonstrated exceptional skill and achieved significant success. These awards include:
+            <ul>
+                <li><strong>Rajiv Gandhi Khel Ratna Award:</strong> The highest sporting honor in India, this award is given for the most outstanding performance by an athlete over a period of four years at the international level. It includes a cash prize, a medal, and a citation.</li>
+                <li><strong>Arjuna Award:</strong> Given for consistent outstanding performance for four years in national and international sports, this award includes a cash prize, a bronze statue of Arjuna, and a citation. It is one of the oldest and most prestigious sports awards in India.</li>
+                <li><strong>Dronacharya Award:</strong> Awarded to coaches who have successfully trained athletes or teams to achieve excellence at the international level. It recognizes their role in developing the talents of athletes and contributing to their success on the global stage.</li>
+                <li><strong>Dhyan Chand Award:</strong> Given for lifetime achievement in sports and games, this award honors those who have contributed to the promotion of sports through their achievements as athletes and their efforts to mentor young talent.</li>
+                <li><strong>Maulana Abul Kalam Azad (MAKA) Trophy:</strong> This award is presented to the overall top-performing university in the inter-university tournaments, recognizing the role of educational institutions in fostering athletic talent.</li>
+            </ul>
+        </li>
+
+        <li><strong>Cash Prizes for Medalists:</strong> Athletes who win medals in international competitions such as the Olympics, Asian Games, Commonwealth Games, and World Championships are rewarded with significant cash prizes by both the central and state governments. The amount of the cash prize varies depending on the level of the competition and the type of medal won (gold, silver, or bronze). These cash prizes are designed to motivate athletes to achieve top positions in prestigious events and represent India on the global stage.</li>
+
+        <li><strong>Public Recognition and Awards Ceremonies:</strong> Athletes who achieve success at national and international levels are publicly recognized through government-organized awards ceremonies. These ceremonies, held annually, celebrate the achievements of athletes across all sports disciplines. Medals, trophies, and certificates are awarded during these ceremonies, and athletes are celebrated in front of national audiences. The government, in collaboration with sports organizations, ensures that athletes' achievements are highlighted, giving them a sense of pride and belonging.</li>
+
+        <li><strong>Special Recognition for Paralympic Athletes:</strong> Paralympic athletes who demonstrate outstanding performance in international competitions are recognized with special awards and honors. These athletes receive the same level of recognition and support as their able-bodied counterparts, with cash prizes, public ceremonies, and accolades from the government. The emphasis on promoting inclusivity and recognizing achievements in para-sports highlights India’s commitment to supporting athletes with disabilities.</li>
+
+        <li><strong>State-Level Awards and Honors:</strong> In addition to national awards, many states in India offer their own recognition awards to athletes who bring glory to their state by performing well in national and international competitions. These awards often include cash prizes, land or housing allotments, and special honors from state governments. The goal is to encourage sports participation at the grassroots level and recognize athletes’ contributions to regional pride.</li>
+
+        <li><strong>Government Sponsorship and Endorsements:</strong> In recognition of their achievements, athletes may receive government sponsorship and endorsements. This includes financial support for training and competition expenses, sponsorship deals, and endorsements from public sector enterprises. Successful athletes may also be invited to represent the government or sports organizations in official events and initiatives. This form of recognition extends beyond medals and cash prizes, helping athletes build sustainable careers in sports.</li>
+
+        <li><strong>Lifetime Achievement Awards:</strong> Retired athletes who have made significant contributions to Indian sports, both during and after their playing careers, may be honored with lifetime achievement awards. These awards recognize athletes who have not only excelled in their sport but have also contributed to its development through coaching, mentoring, or administrative roles. The Dhyan Chand Award is one such honor, celebrating athletes' lifelong commitment to sports.</li>
+
+        <li><strong>Recognition for Coaches and Support Staff:</strong> While athletes are the face of sports success, the contribution of coaches and support staff is equally important. The government recognizes the role of coaches, physiotherapists, doctors, and trainers who work behind the scenes to ensure athletes are well-prepared for competitions. Awards such as the Dronacharya Award highlight the achievements of coaches, while other forms of recognition may include public honors or financial incentives for support staff.</li>
+
+        <li><strong>Tax Exemptions on Award Earnings:</strong> The government provides tax exemptions on the cash prizes, awards, and earnings that athletes receive for their sporting achievements. This ensures that athletes can retain the full value of their awards and use the financial incentives to further their training, education, or personal goals without financial deductions.</li>
+    </ul>
+
+    <p>The recognition awards provided by the government aim to reward the hard work and dedication of athletes, coaches, and support staff. These awards not only celebrate past achievements but also encourage the next generation of athletes to pursue excellence in sports. The government’s commitment to honoring the sporting heroes of India plays a key role in promoting a culture of sportsmanship and national pride.</p>
+
+    <p>For more details on recognition awards and other honors provided to athletes, visit the official website of the <a href="https://yas.nic.in/" target="_blank">Ministry of Youth Affairs and Sports</a>.</p>
+</div>
+
+
+    <!-- Add more sub-content as needed -->
+</div>
+
+
+    <!-- Other tab-content sections -->
+<div>
+    <div id="about-content" class="tab-content" style="display: none;">
+     
+
+     <section id="mission-vision">
+        
+            <h2>Our Mission</h2>
+            <p>In many communities, awareness about the benefits and importance of regular sports and physical activities is lacking. This gap often leads to reduced participation in sports, which can contribute to various health issues, lower academic performance, and missed opportunities for personal development. Our website aims to address this by providing accessible information, resources, and motivational content to encourage individuals of all ages to incorporate sports into their daily lives.</p>
+            <h2>Our Vision</h2>
+            <p>Our vision is to create a world where every individual recognizes the intrinsic value of sports and physical activity. We strive to be a leading resource that inspires and empowers people to engage in sports, fostering healthier, more active communities and promoting overall well-being.
+
+                .</p>
+        </section>
+
+        <section id="approach">
+            <h2>Our Approach</h2>
+            <p>To achieve our vision, we are committed to delivering comprehensive, engaging, and evidence-based content on our website. Our approach includes:
+
+             <p style="text-align: center; " >  1]Providing educational materials that highlight the physical, mental, and social benefits of sports.</p> 
+             <p style="text-align: center;">   2]Showcasing inspiring stories and testimonials from athletes and everyday individuals.</p> 
+             <p style="text-align: center;">    3]Offering practical tips and guidance to help users integrate sports into their routines.</p> 
+            </p> 
+        </section>
+
+        <section id="team">
+            <h2>Meet Our Team</h2>
+            <div class="team-container">
+                <div class="team-member">
+                    <img src="./aagam.jpeg" alt="Team Member 1" class="team-photo" onclick="showMemberInfo('member1')">
+                    <p>Aagam Katariya</p>
+                </div>
+                <div class="team-member">
+                    <img src="./aayush.jpeg" alt="Team Member 2" class="team-photo" onclick="showMemberInfo('member2')">
+                    <p>Aayush Bankar</p>
+                </div>
+                <div class="team-member">
+                    <img src="./atharv.jpeg" alt="Team Member 3" class="team-photo" onclick="showMemberInfo('member3')">
+                    <p>Atharv Brahmankar</p>
+                </div>
+                <div class="team-member">
+                    <img src="./dhruv.jpeg" alt="Team Member 4" class="team-photo" onclick="showMemberInfo('member4')">
+                    <p>Dhruv Barawkar</p>
+                </div>
+                <div class="team-member">
+                    <img src="./rahul.jpeg" alt="Team Member 5" class="team-photo" onclick="showMemberInfo('member5')">
+                    <p>Rahul Bendre</p>
+                </div>
+                <div class="team-member">
+                    <img src="./ram.jpeg" alt="Team Member 6" class="team-photo" onclick="showMemberInfo('member6')">
+                    <p>bhargavram Pedgaonkar</p>
+                </div>
+                <div class="team-member">
+                    <img src="./prathamesh.jpeg" alt="Team Member 7" class="team-photo" onclick="showMemberInfo('member7')">
+                    <p>Prathamesh Kusalkar</p>
+                </div>
+                <div class="team-member">
+                    <img src="./vedant.jpeg" alt="Team Member 8" class="team-photo" onclick="showMemberInfo('member8')">
+                    <p>Vedant Gadge</p>
+                </div>
+            </div>
+            <div id="member-info" style="margin-top: 80px;"></div>
+            
+        </section>
+        </div>
+    </div>
+</div> 
+    </div>
+
+ <!-- Content for Contact Us -->
+  <div>
+ <div id="contact-content" class="tab-content" style="display:none;">
+    <h2>Contact Us</h2>
+    <p>PCCOE, Akurdi, Pune</p>
+    <div style="width: 100%">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3780.273282914894!2d73.75906487440822!3d18.65172878246744!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2b9e76c8fa205%3A0x1b210131915734fd!2sPCCOE%20-%20Pimpri%20Chinchwad%20College%20Of%20Engineering!5e0!3m2!1sen!2sin!4v1726424320672!5m2!1sen!2sin" width="600" height="450" style="border:0; width: 100%;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+
+    <!-- Comments Section -->
+    <h3>Leave a Comment</h3>
+    <form id="comment-form">
+        <textarea id="comment-box" placeholder="Write your review here..." rows="5" style="width: 100%;"></textarea>
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+
+    <!-- Display Comments -->
+    <div id="comments-section">
+        <h3>Reviews</h3>
+        <div id="comments-display">
+            <!-- Submitted comments will appear here -->
+        </div>
+    </div></div>
+    </div>
+
+
+<footer>
+    <div class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Contact</a>
+    </div>
+    <div class="social-media-icons">
+        <a href="https://www.instagram.com/winning_mind24p?igsh=OHJ3ejZ3dWhkaDhw"><img src="./instagram.avif"      alt="instagram"></a>
+        <a href="#"><img src="./facebook.avif" alt="Facebook"></a>
+        <a href="#"><img src="./twitter.webp" alt="Twitter"></a>
+    </div>
+</footer>
+
+<script>
+   // Show the selected tab content
+// Show content for the selected tab
+// Show content for the selected tab
+
+    // Function to show content based on the clicked tab
+    
+    // Function to show the main content based on the clicked tab
+    function showContent(contentId) {
+    // Select all tab contents and hide them
+    const contents = document.querySelectorAll('.tab-content');
+    contents.forEach(function(content) {
+        content.style.display = 'none'; // Hide all main tab contents
+    });
+
+    // Find the selected content
+    const selectedContent = document.getElementById(contentId);
+
+    // Show the selected content if it exists
+    if (selectedContent) {
+        selectedContent.style.display = 'block'; // Show the selected main content
+    } else {
+        console.error(`Content with ID ${contentId} not found.`); // Log an error if the content is missing
+    }
+}
+
+
+    // Function to show sub-content within a section (like Scholarships)
+    function showSubContent(subContentId) {
+        const subContents = document.querySelectorAll('.sub-tab-content');
+        subContents.forEach(function(subContent) {
+            subContent.style.display = 'none'; // Hide all sub-tab contents
+        });
+
+        const selectedSubContent = document.getElementById(subContentId);
+        if (selectedSubContent) {
+            selectedSubContent.style.display = 'block'; // Show the selected sub-content
+        }
+    }
+
+    // Optional: Set default content on page load
+    window.onload = function() {
+        showContent('home-content'); // Default to home content
+    };
+
+
+
+
+
+
+// Show the selected subpart
+function showSubpart(id) {
+    const subparts = document.querySelectorAll('.subpart');
+    subparts.forEach(subpart => {
+        subpart.classList.remove('active');
+        subpart.style.display = 'none';
+    });
+    const subpart = document.getElementById(id);
+    if (subpart) {
+        subpart.classList.add('active');
+        subpart.style.display = 'block';
+    }
+}
+
+// Show member info
+function showMemberInfo(memberId) {
+    const memberInfo = {
+        member1: { role: 'TECHNICAL TEAM MEMBER', insta: 'https://instagram.com/aagamkatariya' },
+        member2: { role: 'RESEARCH COORDINATOR HEAD', insta: 'https://instagram.com/ayushbankar71' },
+        member3: { role: 'TECHNICAL TEAM HEAD', insta: 'https://instagram.com/atharv28_05_' },
+        member4: { role: 'TEAM LEADER', insta: 'https://instagram.com/thedhruvbarawkar' },
+        member5: { role: 'TECHNICAL TEAM MEMBER', insta: 'https://instagram.com/_rahul_bendre356' },
+        member6: { role: 'PUBLIC RELATION HEAD', insta: 'https://instagram.com/ram.p.15' },
+        member7: { role: 'DIGITAL MEDIA MANAGER', insta: 'https://instagram.com/prathameshkusalkarr' },
+        member8: { role: 'RESOURCE HEAD', insta: 'https://instagram.com/_vedant_gadge_' },
+    };
+
+    const member = memberInfo[memberId];
+
+    if (member) {
+        document.getElementById('member-info').innerHTML = 
+            `${member.role} - <a href="${member.insta}" target="_blank">Instagram</a>`;
+    } else {
+        document.getElementById('member-info').innerText = 'Information not available.';
+    }
+}
+
+
+// Update the progress bar based on scroll position
+function updateProgressBar() {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const documentHeight = document.documentElement.scrollHeight;
+    const windowHeight = window.innerHeight;
+    const progressBarContainerHeight = document.getElementById('progress-bar-container').offsetHeight;
+    const scrollPercent = (scrollTop / (documentHeight - windowHeight - progressBarContainerHeight)) * 100;
+
+    document.getElementById('progress-bar').style.width = scrollPercent + '%';
+}
+
+// Scroll event listener for progress bar and scroll info
+document.addEventListener('scroll', function() {
+    updateProgressBar();
+    const scrollPosition = window.scrollY;
+    const scrollInfo = document.getElementById('scroll-info');
+    scrollInfo.textContent = 'You have scrolled ' + scrollPosition + ' pixels';
+});
+
+// Smooth scrolling for navigation links and active link highlight
+document.querySelectorAll('nav a').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href').slice(1);
+        const targetSection = document.getElementById(targetId);
+        targetSection.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.classList.remove('active');
+        });
+        this.classList.add('active');
+    });
+});
+
+// Automatically highlight the active link on scroll
+window.addEventListener('scroll', function() {
+    let sections = document.querySelectorAll('section');
+    let navLinks = document.querySelectorAll('nav a');
+
+    sections.forEach(section => {
+        let top = window.scrollY;
+        let offset = section.offsetTop - 150;
+        let height = section.offsetHeight;
+        let id = section.getAttribute('id');
+
+        if (top >= offset && top < offset + height) {
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === id) {
+                    link.classList.add('active');
+                }
+            });
+        }
+    });
+});
+
+// Display event marquee
+document.addEventListener("DOMContentLoaded", function() {
+    const events = [
+        "Football Tournament - Sept 20, 2024",
+        "Basketball League - Oct 10, 2024",
+        "Swimming Championship - Nov 5, 2024"
+    ];
+    const eventMarquee = document.getElementById("event-marquee");
+    eventMarquee.innerHTML = events.join(" | ");
+    const marquee = document.getElementById('event-marquee');
+    marquee.style.animation = `scroll ${events.length * 3}s linear infinite`;
+});
+
+// Load YouTube videos into placeholders
+function loadYouTubeVideo(videoUrl, placeholderId, width = '800px', height = '450px') {
+    const videoPlaceholder = document.getElementById(placeholderId);
+    if (!videoPlaceholder) {
+        console.error(`Placeholder with ID ${placeholderId} not found.`);
+        return;
+    }
+
+    videoPlaceholder.innerHTML = '';
+    let videoId;
+    try {
+        const url = new URL(videoUrl);
+        if (url.hostname === 'youtu.be') {
+            videoId = url.pathname.split('/').pop();
+        } else if (url.hostname === 'www.youtube.com') {
+            videoId = url.searchParams.get('v');
+        } else {
+            console.error(`Unsupported YouTube URL format: ${videoUrl}`);
+            return;
+        }
+    } catch (e) {
+        console.error(`Error parsing YouTube URL: ${videoUrl}`, e);
+        return;
+    }
+
+    if (!videoId) {
+        console.error(`Invalid YouTube URL: ${videoUrl}`);
+        return;
+    }
+
+    const iframe = document.createElement('iframe');
+    iframe.src = `https://www.youtube.com/embed/${videoId}`;
+    iframe.width = width;
+    iframe.height = height;
+    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+    iframe.allowFullscreen = true;
+    iframe.title = 'YouTube Video';
+    videoPlaceholder.appendChild(iframe);
+}
+
+// Automatically change carousel image
+let currentIndex = 0;
+const images = document.querySelectorAll('.carousel-images img');
+const totalImages = images.length;
+
+function showNextImage() {
+    images[currentIndex].classList.remove('active');
+    currentIndex = (currentIndex + 1) % totalImages;
+    images[currentIndex].classList.add('active');
+}
+
+setInterval(showNextImage, 3000); // Change image every 3 seconds
+
+// Read More popup functionality
+// Function to show the popup with the selected content
+
+    // Function to show the popup with the selected content
+    function showPopup(contentId) {
+        const popupOverlay = document.getElementById('popup-overlay');
+        const popupBody = document.getElementById('popup-body');
+        const content = document.getElementById(contentId);
+
+        if (content) {
+            // Set the popup body content to the selected content
+            popupBody.innerHTML = content.innerHTML;
+            popupOverlay.style.display = 'block';
+        }
+    }
+
+    // Close the popup when clicking on the close button
+    document.querySelector('.popup-close').addEventListener('click', function () {
+        document.getElementById('popup-overlay').style.display = 'none';
+    });
+
+    // Add event listeners to all read-more buttons to show the popup
+    document.querySelectorAll('.read-more').forEach(button => {
+        button.addEventListener('click', function () {
+            const popupId = this.getAttribute('data-popup');
+            showPopup(popupId);
+        });
+    });
+
+    // Ensure to hide the popup overlay if clicked outside the content
+    document.getElementById('popup-overlay').addEventListener('click', function (e) {
+        if (e.target === this) {
+            this.style.display = 'none';
+        }
+    });
+      // Function to show the popup
+      function showPopup(contentId) {
+        // Get the content from the hidden section
+        var content = document.getElementById(contentId).innerHTML;
+
+        // Show the popup overlay
+        document.getElementById('popup-overlay').style.display = 'block';
+
+        // Insert the content into the popup body
+        document.getElementById('popup-body').innerHTML = content;
+    }
+
+    // Function to hide the popup
+    function closePopup() {
+        document.getElementById('popup-overlay').style.display = 'none';
+    }
+
+    // Add click event listeners to all read-more buttons
+    document.querySelectorAll('.read-more').forEach(function(button) {
+        button.addEventListener('click', function() {
+            var popupContentId = this.getAttribute('data-popup');
+            showPopup(popupContentId);
+        });
+    });
+
+    // Add click event listener to the close button
+    document.querySelector('.popup-close').addEventListener('click', closePopup);
+
+    // Close the popup when clicking outside of it
+    document.getElementById('popup-overlay').addEventListener('click', function(event) {
+        if (event.target === this) {
+            closePopup();
+        }
+    });
+    function toggleContent(contentId) {
+            var content = document.getElementById(contentId);
+            if (content.style.display === "none" || content.style.display === "") {
+                content.style.display = "block";
+            } else {
+                content.style.display = "none";
+            }
+        }
+        
+    function filterContent() {
+        let input = document.getElementById('search-bar').value.toLowerCase();
+    let tabs = document.getElementsByClassName('tab-content');
+    for (let i = 0; i < tabs.length; i++) {
+        let tab = tabs[i];
+        if (tab.innerText.toLowerCase().includes(input)) {
+            tab.style.display = 'block';  // Show relevant tab
+        } else {
+            tab.style.display = 'none';   // Hide others
+        }
+    }
+        
+        // Array of sections and keywords
+        let sections = [
+            { id: 'home-content', keywords: ['home', 'welcome', 'intro'] },
+            { id: 'history-content', keywords: ['history', 'past', 'origins'] },
+            { id: 'rules-content', keywords: ['rules', 'game rules', 'guidelines'] },
+            { id: 'types-content', keywords: ['types', 'sports types', 'team sports', 'individual sports'] },
+            { id: 'health-benefits', keywords: ['health', 'Physical Benefits', 'Mental Benefits','Social Benefits'] },
+            { id: 'sports-quota-benefits-content', keywords: ['sports quota', 'quota benefits', 'government'] },
+            { id: 'about-content', keywords: ['about', 'mission', 'vision'] },
+            // Add other sections here
+        ];
+
+        // Loop through sections and keywords
+        sections.forEach(section => {
+            section.keywords.forEach(keyword => {
+                if (keyword.includes(input)) {
+                    showContent(section.id);  // Call your existing showContent() function
+                    document.getElementById(section.id).scrollIntoView({ behavior: 'smooth' });  // Smooth scroll
+                    found = true;
+                }
+            });
+        });
+
+        // If no match is found, show an alert
+        if (!found) {
+            alert("No matching content found. Please try searching for something else.");
+        }
+    }
+
+    // Existing function to switch between tab contents
+    function showContent(contentId) {
+        const contents = document.querySelectorAll('.tab-content');
+        contents.forEach(function(content) {
+            content.classList.remove('active-content');
+        });
+        const selectedContent = document.getElementById(contentId);
+        selectedContent.classList.add('active-content');
+    }
+    function showSportsQuotaContent() {
+    // Hide all other sections first (if there are multiple main sections)
+    var allSections = document.querySelectorAll('.main-tab-content');
+    allSections.forEach(function(section) {
+        section.style.display = 'none'; // Hide all other sections
+    });
+
+    // Show the sports quota section
+    var sportsQuotaSection = document.getElementById('sports-quota-benefits-content');
+    sportsQuotaSection.style.display = 'block'; // Show the Sports Quota section
+}
+
+function showContent(tabId) {
+    // Hide all tab content inside the sports quota section
+    var tabContents = document.querySelectorAll('.tab-content');
+    tabContents.forEach(function(content) {
+        content.style.display = 'none'; // Hide all tab contents
+    });
+
+    // Show the selected tab content
+    var selectedTab = document.getElementById(tabId);
+    if (selectedTab) {
+        selectedTab.style.display = 'block'; // Show the selected tab content
+    } else {
+        console.error('Tab content not found for ID: ' + tabId);
+    }
+}
+function showSubpart(id) {
+    // Hide all subparts first
+    var subparts = document.getElementsByClassName('subpart');
+    for (var i = 0; i < subparts.length; i++) {
+        subparts[i].style.display = 'none';
+    }
+    
+    // Show the selected subpart
+    var subpart = document.getElementById(id);
+    subpart.style.display = 'block';
+}
+
+
+function toggleContent(id) {
+    var content = document.getElementById(id);
+    if (content) {
+        if (content.style.display === "none" || content.style.display === "") {
+            content.style.display = "block";
+        } else {
+            content.style.display = "none";
+        }
+    } else {
+        console.error("Element with id '" + id + "' not found.");
+    }
+}
+ // FUNCTION FOR CONTAC-US MAP(AAGAM)
+ function showContent(contentId) {
+            // Hide all content sections
+            const contents = document.querySelectorAll('div[id$="-content"]');
+            contents.forEach(content => content.style.display = 'none');
+            
+            // Show the selected content section
+            const selectedContent = document.getElementById(contentId);
+            if (selectedContent) {
+                selectedContent.style.display = 'block';
+            }
+        }
+    
+        // JAVA FOR COMMENTS SECTION(AAGAM)
+        document.getElementById('comment-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const commentBox = document.getElementById('comment-box');
+            const commentText = commentBox.value.trim();
+            
+            if (commentText !== "") {
+                const commentDisplay = document.getElementById('comments-display');
+                const newComment = document.createElement('p');
+                newComment.textContent = commentText;
+                commentDisplay.appendChild(newComment);
+                commentBox.value = '';  // Clear the comment box
+            } else {
+                alert("Please enter a comment before submitting.");
+            }
+        });
+        function loadYouTubeVideo(videoUrl, placeholderId, width = '800px', height = '450px') {
+    // Find the video placeholder by its ID
+    const videoPlaceholder = document.getElementById(placeholderId);
+    if (!videoPlaceholder) {
+        console.error(`Placeholder with ID ${placeholderId} not found.`);
+        return;
+    }
+
+    // Clear any existing content in the placeholder
+    videoPlaceholder.innerHTML = '';
+
+    // Extract the video ID from various YouTube URL formats
+    let videoId;
+    try {
+        const url = new URL(videoUrl);
+        if (url.hostname === 'youtu.be') {
+            videoId = url.pathname.split('/').pop();
+        } else if (url.hostname === 'www.youtube.com') {
+            videoId = url.searchParams.get('v');
+        } else {
+            console.error(`Unsupported YouTube URL format: ${videoUrl}`);
+            return;
+        }
+    } catch (e) {
+        console.error(`Error parsing YouTube URL: ${videoUrl}`, e);
+        return;
+    }
+
+    if (!videoId) {
+        console.error(`Invalid YouTube URL: ${videoUrl}`);
+        return;
+    }
+
+    // Create the iframe element
+    const iframe = document.createElement('iframe');
+    iframe.src = `https://www.youtube.com/embed/${videoId}`;
+    iframe.width = width;
+    iframe.height = height;
+    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+    iframe.allowFullscreen = true;
+    iframe.title = 'YouTube Video';
+
+    // Append the iframe to the placeholder
+    videoPlaceholder.appendChild(iframe);
+}
+
+// Example YouTube video URLs
+const exampleYouTubeUrl1 = "https://youtu.be/R0alThHNb0Y?si=-y9EIyEAY5w4fNTN";
+const exampleYouTubeUrl2 = "https://youtu.be/NLoUvm0JGAg?si=dzf6wAse4WzJ7EMR";
+const exampleYouTubeUrl3 = "https://youtu.be/lcB0LYNp0oI?si=cx64lTnTjHesZnpq";
+
+
+// Load YouTube videos into placeholders
+document.addEventListener('DOMContentLoaded', function() {
+    loadYouTubeVideo(exampleYouTubeUrl1, 'video1-placeholder', '400px', '225px');
+    loadYouTubeVideo(exampleYouTubeUrl2, 'video2-placeholder', '400px', '225px');
+    loadYouTubeVideo(exampleYouTubeUrl3, 'video3-placeholder', '400px', '225px');
+});
+// JavaScript for handling popup opening
+document.querySelectorAll('.read-more').forEach(button => {
+    button.addEventListener('click', function () {
+        const popupId = this.getAttribute('data-popup');
+        document.getElementById(popupId).style.display = 'block';
+        document.getElementById('popup-overlay').style.display = 'block';
+    });
+});
+
+// Close the popup
+document.querySelectorAll('.popup-close').forEach(closeBtn => {
+    closeBtn.addEventListener('click', function () {
+        document.querySelectorAll('.popup-overlay').forEach(overlay => {
+            overlay.style.display = 'none';
+        });
+    });
+});
+function showContent(tabId) {
+    // Hide all tab contents
+    document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.classList.remove('active-content');
+        tab.style.display = 'none';
+    });
+
+    // Show the clicked tab content
+    document.getElementById(tabId).style.display = 'block';
+    document.getElementById(tabId).classList.add('active-content');
+}
+function showPersonalityInfo(personalityId) {
+        // Hide all personality info sections
+        var infos = document.getElementsByClassName('personality-info');
+        for (var i = 0; i < infos.length; i++) {
+            infos[i].style.display = 'none';
+        }
+        // Display the clicked personality info
+        document.getElementById(personalityId).style.display = 'block';
+    }
+    function showContent(tabId) {
+    let tabs = document.getElementsByClassName('tab-content');
+    for (let i = 0; i < tabs.length; i++) {
+        tabs[i].style.display = 'none';  // Hide all tabs
+    }
+    document.getElementById(tabId).style.display = 'block';  // Show the selected tab
+}
+
+</script>
+</body>
+</html>
