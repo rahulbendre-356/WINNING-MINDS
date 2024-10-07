@@ -1,0 +1,991 @@
+
+        /* Your existing CSS here */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        header {
+    background-image: url('./header2.png');
+    background-size: cover; /* Ensure the image covers the entire header */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    padding: 20px;
+    color: #8fffe5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    height: 100%; /* Adjust header height */
+    width: 100%;
+}
+
+        header .logo {
+            width: 200px;
+            height: auto;
+            position: absolute;
+            left: 20px;
+        }
+
+        .header-text {
+            text-align: center;
+            flex-grow: 1;
+            color:#4cd8e4;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #2c3e50;
+            position: relative;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-item > a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .nav-item > a:hover {
+            background-color: #34495e;
+        }
+
+        .sub-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #34495e;
+            z-index: 1;
+        }
+
+        .sub-menu a {
+            padding: 10px 20px;
+            text-decoration: none;
+            display: block;
+            color: white;
+        }
+
+        .sub-menu a:hover {
+            background-color: #2c3e50;
+        }
+
+        .nav-item:hover .sub-menu {
+            display: block;
+        }
+
+        .main-content {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        .active-content {
+            display: block;
+        }
+
+        footer {
+            background-color: #2c3e50;
+            padding: 20px;
+            color: white;
+            text-align: center;
+        }
+
+        .footer-links a {
+            color: white;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: #3498db;
+        }
+
+        .social-media-icons img {
+            width: 24px;
+            margin: 0 10px;
+        }
+
+        .social-media-icons {
+            margin-top: 15px;
+        }
+
+        .team-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .team-member {
+            width: 120px;
+            height: 120px;
+            cursor: pointer;
+        }
+
+        .team-photo {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .history-images {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .history-img {
+            width: 48%;
+            max-width: 48%;
+            height: 300px;
+            object-fit: cover;
+            margin: 10px 0;
+        }
+
+        #rules-content ul {
+            list-style-type: disc;
+            padding-left: 20px;
+            margin-left: 0;
+        }
+
+        #rules-content li {
+            margin-bottom: 10px;
+        }
+
+        .tab-button {
+            cursor: pointer;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+            margin: 5px;
+            display: inline-block;
+        }
+
+        .tab-button.active {
+            background-color: #ddd;
+        }
+
+        .subpart {
+            display: none;
+            padding: 10px;
+            border: 1px solid #ccc;
+            margin-top: 10px;
+            background-color: #e9e9e9;
+        }
+
+        .subpart.active {
+            display: block;
+        }
+        .tab-container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border-radius: 10px;
+    }
+    .benefits-image {
+        width: 200px; /* Adjust width */
+        height: 200px; /* Auto-adjust height */
+        margin: 10px 0;
+        border-radius: 8px; /* Rounded corners for softer, more attractive look */
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+        
+    }
+   
+    .tab-content {
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        padding: 20px;
+        background-color: #ffffff;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        
+    }
+    h1 {
+        font-size: 24px;
+        color: #2c3e50;
+    }
+    p {
+        font-size: 16px;
+        color: #555555;
+        line-height: 1.6;
+    }
+    strong {
+        color: #2c3e50;
+    }
+    #progress-bar-container {
+    width: 100%;
+    height: 5px;
+    background-color: #ddd;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+}
+
+#progress-bar {
+    height: 100%;
+    width: 0;
+    background-color: #4cd8e4;
+    transition: width 0.2s ease;
+}
+.main-content {
+    padding: 20px;
+    text-align: center;
+    /* Set overflow to auto or scroll if content might overflow */
+    overflow: auto;
+}
+/* Add this CSS to style the scroll info div */
+#scroll-info {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #2c3e50;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    z-index: 9999;
+    width: 100%;
+    text-align: center;
+}
+@media (max-width: 768px) {
+    .nav-item {
+        display: block;
+        text-align: center;
+    }
+    
+    .history-img {
+        width: 100%;
+        height: auto;
+    }
+}
+/* Smooth Scroll for the entire document */
+html {
+  scroll-behavior: smooth;
+}
+.event-bar {
+    background-color: #f39c12; /* Orange background color */
+    color: white;              /* White text */
+    padding: 10px;             /* Padding around the content */
+    margin-bottom: 10px;       /* Space below the event bar */
+    text-align: center;        /* Centering the text */
+    position: relative;
+    overflow: hidden;          /* Ensures content doesn't overflow */
+    height: 20px;              /* Fixed height for the event bar */
+}
+
+#event-marquee {
+    white-space: nowrap;       /* Prevent text wrapping */
+    display: inline-block;     /* Inline block to allow scrolling */
+    padding-left: 100%;        /* Push content off screen to the right */
+    animation: scroll 10s linear infinite; /* Animation for scrolling */
+}
+@keyframes scroll {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+.info-boxes {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.info-box {
+    flex: 1;
+    margin: 20px;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.info-box h3 {
+    margin-top: 0;
+    font-size: 1.5em;
+    color: #333;
+}
+
+.info-box p {
+    font-size: 1em;
+    color: #666;
+}
+.video-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.videos {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px; /* Adjust the gap between the video boxes as needed */
+}
+
+.video-box {
+    flex: 1;
+    min-width: 300px; /* Adjust the minimum width as needed */
+    background-color: #f4f4f4; /* Add a background color for visibility */
+    padding: 10px; /* Add padding for some spacing */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add a shadow for better visual separation */
+}
+
+.video-box iframe {
+    width: 100%;
+    height: 200px; /* Adjust the height as needed */
+    border: none;
+}
+.info-box {
+    width: 100%; /* Ensure the boxes take up the available width */
+    margin: 20px 0; /* Add some spacing between the boxes */
+    padding: 20px;
+    box-sizing: border-box; /* Include padding in the element's width and height */
+}
+
+.info-box-img {
+    width: 100%; /* Make the image take the full width of the parent container */
+    height: auto; /* Keep the aspect ratio intact */
+    display: block; /* Ensure the image behaves like a block element */
+    margin-bottom: 20px; /* Add some space between the image and the text below */
+}
+.section {
+            margin-bottom: 40px;
+            background-color: white;
+            padding: 30px;
+            border-radius: 50px;
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        .section:hover {
+            transform: translateY(-10px);
+        }
+        h2 {
+            color: #0056b3;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        p {
+            line-height: 1.7;
+            font-size: 16px;
+            text-align: justify;
+        }
+        .image {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .oval-img {
+            width: 30%;
+            height: auto;
+            border-radius: 50%;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .section {
+    border-radius: 20px; /* Apply rounded corners */
+}
+.box {
+    border-radius: 20px; /* Apply rounded corners to boxes */
+}
+.section-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Space between boxes */
+}
+.box {
+    flex: 1;
+    min-width: 300px; /* Minimum width for responsiveness */
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 10px;
+}
+/* Carousel container */
+.carousel {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    height: 300px;
+    overflow: hidden;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+/* Carousel images wrapper */
+.carousel-images {
+    display: flex;
+    width: 300%; /* Adjust based on the number of images */
+    height: 300%;
+    transition: transform 0.5s ease-in-out;
+}
+
+/* Individual image in the carousel */
+.carousel-images img {
+    width: 20%; /* For 5 images */
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* Navigation arrows (optional) */
+.carousel-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    font-size: 1.5rem;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.carousel-control.left {
+    left: 10px;
+}
+
+.carousel-control.right {
+    right: 10px;
+}
+/* Optional: Add fade effect */
+/* Carousel container */
+.carousel {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+/* Carousel images wrapper */
+.carousel-images {
+    display: flex;
+    width: 300%; /* 100% * number of images */
+    height: 100%;
+    animation: scroll 15s linear infinite; /* Adjust duration for scrolling speed */
+}
+
+/* Individual image in the carousel */
+.carousel-images img {
+    width: 20%; /* 100% / number of images */
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* Keyframes for continuous scroll */
+@keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}
+/* Main navigation styles */
+/* Main navigation styles */
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #2c3e50;
+    padding: 10px;
+    width: 100%;
+}
+
+ul.menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-item > a {
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    display: block;
+    font-size: 16px;
+}
+
+.nav-item > a:hover {
+    background-color: #34495e;
+    border-radius: 5px;
+}
+
+/* Sub-menu styles */
+.sub-menu {
+    display: none;
+    position: absolute;
+    background-color: #34495e;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.sub-menu li {
+    list-style: none;
+}
+
+.sub-menu li a {
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    display: block;
+}
+
+.sub-menu li a:hover {
+    background-color: #2c3e50;
+}
+
+.nav-item:hover .sub-menu {
+    display: block;
+}
+
+/* Search bar and logo container */
+.search-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#search-bar {
+    padding: 10px;
+    width: 250px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.search-icon {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+/* Styling for Info Boxes */
+.info-boxes {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 20px 0;
+}
+
+.info-box {
+    width: auto;
+    padding: 20px;
+    margin: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-sizing: border-box;
+}
+
+.info-box img {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.info-box h3 {
+    margin-top: 0;
+}
+
+.read-more {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.read-more:hover {
+    background-color: #0056b3;
+}
+
+/* Popup Styling */
+.popup-overlay {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.popup-content {
+    position: relative;
+    margin: 10% auto;
+    padding: 20px;
+    background: #fff;
+    width: 80%;
+    max-width: 600px;
+}
+
+.popup-close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Latest News Box */
+
+
+.news-container {
+  width: 100%;
+  max-width: 600px;
+  height: 300px; /* Container height */
+  margin: 20px auto;
+  padding: 10px;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  overflow: hidden; /* Hide overflow */
+  position: relative; /* Ensure the position of child elements */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.news-content {
+  position: absolute;
+  width: 100%;
+  top: 10; /* Start at the top of the container */
+  display: flex;
+  flex-direction: column; /* Stack news items vertically */
+  animation: scrollNews 10s linear infinite;
+}
+
+/* Animation for scrolling the news */
+@keyframes scrollNews {
+  0% {
+    transform: translateY(0); /* Start from the top */
+  }
+  100% {
+    transform: translateY(-100%); /* Move up by the height of the content */
+  }
+}
+
+/* Optional: style links within news content */
+.news-content a {
+  text-decoration: none;
+  color: #007bff; /* Adjust link color */
+}
+
+.news-content a:hover {
+  text-decoration: underline;
+}
+.sport-boxes {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.sport-box {
+    width: 200px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.sport-box img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.read-more-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.read-more-button:hover {
+    background-color: #0056b3;
+}
+
+.subpart {
+    display: none;
+    margin-top: 20px;
+}
+
+.subpart.active {
+    display: block;
+}
+
+.sport-detail {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.sport-item {
+    width: 200px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+}
+
+.sport-item img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+.tab-content-custom {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .info-boxes-custom {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .info-box-custom {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+        .info-box-custom img {
+            border-radius: 10px;
+        }
+        .read-more-custom {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .read-more-custom:hover {
+            background-color: #0056b3;
+        }
+
+        /* Extended content section (hidden by default) */
+        .extended-content-custom {
+            display: none;
+            margin-top: 20px;
+            text-align: left;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+        }
+
+        .extended-content-custom p {
+            margin: 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .info-boxes-custom {
+                flex-direction: column;
+                align-items: center;
+            }
+            .info-box-custom {
+                margin-bottom: 20px;
+            }
+        }
+        #esports, #extreme-sports {
+    display: none; /* Ensure this is not overriding your JavaScript */
+}
+ /* Comment Section Container */
+ .comment-section {
+        padding: 20px;
+        background-color: #f9f9f9;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        max-width: 700px;
+        margin: 20px auto;
+    }
+
+    /* Style for the Comment Heading */
+    #comments-section h3 {
+        font-size: 1.5em;
+        color: #444;
+        margin-bottom: 15px;
+    }
+
+    /* Style for the textarea (comment box) */
+    #comment-box {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        font-size: 1em;
+    }
+
+    /* Style for the submit button */
+    #comment-form button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1em;
+    }
+
+    #comment-form button:hover {
+        background-color: #0056b3;
+    }
+
+    /* Style for displaying comments(AAGAM) */
+    #comments-display p {
+        background-color: #fff;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        font-size: 0.95em;
+        color: #333;
+    }
+    .personality-row {
+    display: flex;
+    overflow-x: auto; /* Enable horizontal scrolling */
+    gap: 20px; /* Space between items */
+    padding: 10px;
+    scroll-snap-type: x mandatory; /* Snapping for smooth scroll */
+}
+
+.personality-circle {
+    flex: 0 0 auto; /* Prevent shrinking and maintain size */
+    text-align: center;
+    scroll-snap-align: center; /* Center item when scrolled */
+}
+
+.circle-img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+/* Styles for laptops (screen width between 1024px and 1440px) */
+@media (max-width: 1440px) and (min-width: 1024px) {
+    .nav-item {
+        font-size: 16px;
+    }
+    .info-box {
+        padding: 15px;
+    }
+}
+
+/* Styles for tablets and smaller devices (screen width between 768px and 1024px) */
+@media (max-width: 1024px) and (min-width: 768px) {
+    .nav-item {
+        display: block;
+        text-align: center;
+    }
+    .carousel-images img {
+        width: 50%;
+    }
+}
+
+/* Mobile styles (screen width below 768px) */
+@media (max-width: 768px) {
+    .nav-item {
+        display: block;
+        text-align: center;
+    }
+    .info-box {
+        width: 100%;
+        margin: 10px 0;
+    }
+    .history-img {
+        width: 100%;
+        height: auto;
+    }
+    .videos {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+@media (max-width: 768px) {
+    .nav-item {
+        display: block;
+        text-align: center;
+    }
+}
+@media (max-width: 768px) {
+    .info-boxes, .sport-boxes, .team-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .info-box, .team-member, .sport-box {
+        width: 100%; /* Ensure they take up the full width */
+        margin-bottom: 20px; /* Add space between stacked boxes */
+    }
+}
+img {
+    max-width: 100%;
+    height: auto; /* Maintain aspect ratio */
+}
+
+.history-img {
+    width: 100%; /* Ensure the image spans the full width on mobile */
+}
+@media (max-width: 768px) {
+    .carousel-images img {
+        width: 100%; /* Make each carousel image take up full width */
+    }
+
+    .videos {
+        flex-direction: column;
+    }
+
+    .video-box {
+        min-width: 100%;
+        margin-bottom: 20px;
+    }
+}
+@media (max-width: 768px) {
+    .info-box, .team-member {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}
+body {
+    word-wrap: break-word;
+}
+
+@media (max-width: 768px) {
+    h1, h2, p {
+        padding: 10px;
+    }
+}
+header {
+    min-height: 200px; /* Allow height to adjust based on content */
+}
+
+    
