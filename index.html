@@ -1658,14 +1658,22 @@
         <a href="#"><img src="./facebook.avif" alt="Facebook"></a>
         <a href="#"><img src="./twitter.webp" alt="Twitter"></a>
     </div>
+    <div>
+        <p>Visitor Count: <span id="visitorCount">Loading...</span></p>
+    </div>
 </footer>
 
 <script>
-   // Show the selected tab content
-// Show content for the selected tab
-// Show content for the selected tab
-
-    // Function to show content based on the clicked tab
+  // Fetch visitor count from CountAPI for your site
+        fetch('https://api.countapi.xyz/hit/aagam887.github.io/WINNING-MINDS')
+          .then(response => response.json())
+          .then(data => {
+              document.getElementById('visitorCount').textContent = data.value;
+          })
+          .catch(err => {
+              console.error("Error fetching visitor count:", err);
+              document.getElementById('visitorCount').textContent = "Error";
+          });
     
     // Function to show the main content based on the clicked tab
     function showContent(contentId) {
